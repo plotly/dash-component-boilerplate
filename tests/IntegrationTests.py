@@ -1,0 +1,77 @@
+import multiprocessing
+import sys
+import time
+import unittest
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import os
+import percy
+import logging
+
+# flake8: noqa: F401
+# pylint: disable=import-error,unused-import
+import chromedriver_binary
+
+
+class IntegrationTests(unittest.TestCase):
+
+    def percy_snapshot(self, name=''):
+        if os.environ.get('PERCY_ENABLED', False):
+            snapshot_name = '{} - {}'.format(name, sys.version_info)
+            self.percy_runner.snapshot(
+                name=snapshot_name
+            )
+
+    @classmethod
+    def setUpClass(cls):
+        super(IntegrationTests, cls).setUpClass()
+
+        options = Options()
+        if 'DASH_TEST_CHROMEPATH' in os.environ:
+            options.binary_location = os.environ['DASH_TEST_CHROMEPATH']
+
+        cls.driver = webdriver.Chrome(chrome_options=options)
+
+        if os.environ.get('PERCY_ENABLED', False):
+            loader = percy.ResourceLoader(
+                webdriver=cls.driver
+            )
+            cls.percy_runner = percy.Runner(loader=loader)
+            cls.percy_runner.initialize_build()
+
+    @classmethod
+    def tearDownClass(cls):
+        super(IntegrationTests, cls).tearDownClass()
+
+        if os.environ.get('PERCY_ENABLED', False):
+            cls.driver.quit()
+            cls.percy_runner.finalize_build()
+
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        time.sleep(2)
+        self.server_process.terminate()
+        time.sleep(2)
+
+    def startServer(self, app):
+        def run():
+            app.scripts.config.serve_locally = True
+            app.css.config.serve_locally = True
+            app.run_server(
+                port=8050,
+                debug=False,
+                processes=1,
+                threaded=True
+            )
+
+        # Run on a separate process so that it doesn't block
+        self.server_process = multiprocessing.Process(target=run)
+        logging.getLogger('werkzeug').setLevel(logging.ERROR)
+        self.server_process.start()
+        time.sleep(5)
+
+        # Visit the dash page
+        self.driver.get('http://localhost:8050')
+        time.sleep(0.5)
