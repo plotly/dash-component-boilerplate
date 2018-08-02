@@ -1,20 +1,22 @@
+from __future__ import absolute_import
+
+import logging
+import os
 import multiprocessing
 import sys
 import time
 import unittest
+import percy
+import threading
+import platform
+import flask
+import requests
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import os
-import percy
-import logging
-
-# flake8: noqa: F401
-# pylint: disable=import-error,unused-import
-import chromedriver_binary
 
 
 class IntegrationTests(unittest.TestCase):
-
     def percy_snapshot(self, name=''):
         if os.environ.get('PERCY_ENABLED', False):
             snapshot_name = '{} - {}'.format(name, sys.version_info)
@@ -43,33 +45,62 @@ class IntegrationTests(unittest.TestCase):
     def tearDownClass(cls):
         super(IntegrationTests, cls).tearDownClass()
 
+        cls.driver.quit()
         if os.environ.get('PERCY_ENABLED', False):
-            cls.driver.quit()
             cls.percy_runner.finalize_build()
 
     def setUp(self):
         pass
 
     def tearDown(self):
-        time.sleep(2)
-        self.server_process.terminate()
-        time.sleep(2)
+        time.sleep(3)
+        if platform.system() == 'Windows':
+            requests.get('http://localhost:8050/stop')
+        else:
+            self.server_process.terminate()
+        time.sleep(3)
 
     def startServer(self, app):
+        if 'DASH_TEST_PROCESSES' in os.environ:
+            processes = int(os.environ['DASH_TEST_PROCESSES'])
+        else:
+            processes = 4
+
         def run():
             app.scripts.config.serve_locally = True
             app.css.config.serve_locally = True
             app.run_server(
                 port=8050,
                 debug=False,
-                processes=1,
+                processes=processes
+            )
+
+        def run_windows():
+            app.scripts.config.serve_locally = True
+            app.css.config.serve_locally = True
+
+            @app.server.route('/stop')
+            def _stop_server_windows():
+                stopper = flask.request.environ['werkzeug.server.shutdown']
+                stopper()
+                return 'stop'
+
+            app.run_server(
+                port=8050,
+                debug=False,
                 threaded=True
             )
 
         # Run on a separate process so that it doesn't block
-        self.server_process = multiprocessing.Process(target=run)
+
+        system = platform.system()
+        if system == 'Windows':
+            self.server_thread = threading.Thread(target=run_windows)
+            self.server_thread.start()
+        else:
+            self.server_process = multiprocessing.Process(target=run)
+            self.server_process.start()
         logging.getLogger('werkzeug').setLevel(logging.ERROR)
-        self.server_process.start()
         time.sleep(5)
 
         # Visit the dash page
