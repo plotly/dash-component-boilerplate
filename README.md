@@ -1,4 +1,4 @@
-# Dash Component Skeleton
+# Dash Component Boilerplate
 
 This repository contains the minimal set of code required to create your own custom Dash component.
 
