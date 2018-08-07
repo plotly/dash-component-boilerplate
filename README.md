@@ -40,10 +40,12 @@ npm run start
     python setup.py sdist
     ```
     This distribution tarball will get generated in the `dist/` folder
+
     3. Test your tarball by copying it into a new environment and installing it locally:
     ```
     pip install my_dash_component-0.0.1.tar.gz
     ```
+
     4. If it works, then you can publish the component to NPM and PyPI:
     ```
     npm run publish
