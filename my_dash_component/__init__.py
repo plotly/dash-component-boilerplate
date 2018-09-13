@@ -31,7 +31,8 @@ _this_module = _sys.modules[__name__]
 
 _js_dist = [
     {
-        'relative_package_path': 'bundle.js',
+        'relative_package_path': '{}.min.js'.format(__name__),
+        'dev_package_path': '{}.dev.js'.format(__name__),
         'external_url': (
             'https://unpkg.com/my_dash_component'
             '/' + package_name + '/bundle.js'
