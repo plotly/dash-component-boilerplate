@@ -3,11 +3,11 @@ const packagejson = require('./package.json');
 
 const dashLibraryName = packagejson.name.replace(/-/g, '_');
 
-module.exports = {
+module.exports = (env, argv) => ({
     entry: {main: './src/lib/index.js'},
     output: {
         path: path.resolve(__dirname, dashLibraryName),
-        filename: 'bundle.js',
+        filename: `${dashLibraryName}.${argv.mode === 'development' ? 'dev' : 'min'}.js`,
         library: dashLibraryName,
         libraryTarget: 'window',
     },
@@ -38,4 +38,4 @@ module.exports = {
             },
         ],
     },
-};
+});
