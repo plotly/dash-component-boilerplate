@@ -1,0 +1,4 @@
+include {{cookiecutter.project_slug}}/bundle.js
+include {{cookiecutter.project_slug}}/metadata.json
+include {{cookiecutter.project_slug}}/package.json
+include README.md
