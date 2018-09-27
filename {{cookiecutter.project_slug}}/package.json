@@ -11,7 +11,7 @@
     "build:all": "npm run build:js & npm run build:js-dev & npm run build:py"
   },
   "author": "{{ cookiecutter.full_name }} {{ cookiecutter.email }}",
-  "license": "{{ cookiecutter.open_source_license }}",
+  "license": "{% set _license_identifiers = {'MIT License': 'MIT','BSD License': 'BSD','ISC License': 'ISC','Apache Software License 2.0': 'Apache-2.0','GNU General Public License v3': 'GPL-3.0','Not open source': ''} %} {{ _license_identifiers[cookiecutter.open_source_license] }}",
   "dependencies": {
     "ramda": "^0.25.0",
     "react": "15.4.2",
