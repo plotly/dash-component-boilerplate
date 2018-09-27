@@ -12,6 +12,8 @@ $ pip install cookiecutter
 ```
 $ cookiecutter git@github.com:plotly/dash-component-boilerplate.git
 ```
+The prompt will ask questions about the project, then it will create your project in a directory with the `project_shortname` variable.
+
 3. Install dependencies
     ```
     $ cd {{cookiecutter.project_shortname}}
@@ -82,7 +84,7 @@ $ cookiecutter git@github.com:plotly/dash-component-boilerplate.git
     $ python -m unittest tests.test_render
     ```
     The Dash team uses these types of integration tests extensively. Browse the Dash component code on GitHub for more examples of testing (e.g. https://github.com/plotly/dash-core-components)
-- Publishing your component to NPM will make the JavaScript bundles available on the unpkg CDN. By default, Dash servers the component library's CSS and JS from the remote unpkg CDN, so if you haven't published the component package to NPM you'll need to set the `serve_locally` flags to `True`. We will eventually make `serve_locally=True` the default, [follow our progress in this issue](https://github.com/plotly/dash/issues/284).
+- Publishing your component to NPM will make the JavaScript bundles available on the unpkg CDN. By default, Dash serves the component library's CSS and JS from the remote unpkg CDN, so if you haven't published the component package to NPM you'll need to set the `serve_locally` flags to `True` (unless you choose `False` on `publish_on_npm`). We will eventually make `serve_locally=True` the default, [follow our progress in this issue](https://github.com/plotly/dash/issues/284).
 - Watch the [component boilerplate repository](https://github.com/plotly/dash-component-boilerplate) to stay informed of changes to our components.
 
 
