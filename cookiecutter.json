@@ -5,7 +5,7 @@
   "project_name": "my dash component",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
   "version": "0.1.0",
-  "component_name": "{{ cookiecutter.project_slug.replace('_', '').capitalize() }}",
+  "component_name": "{{ cookiecutter.project_name.replace(' ', '').replace('-', '') }}",
   "open_source_license": [
     "MIT license",
     "BSD license",

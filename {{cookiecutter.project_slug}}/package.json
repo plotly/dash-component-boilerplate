@@ -8,8 +8,7 @@
     "build:js-dev": "webpack --mode development",
     "build:js": "webpack --mode production",
     "build:py": "node ./extract-meta src/lib/components > {{cookiecutter.project_slug}}/metadata.json && copyfiles package.json {{cookiecutter.project_slug}} && python -c \"import dash; dash.development.component_loader.generate_classes('{{cookiecutter.project_slug}}', '{{cookiecutter.project_slug}}/metadata.json')\"",
-    "build:all": "npm run build:js & npm run build:py",
-    "build:all-dev": "npm run build:js-dev & npm run build:py"
+    "build:all": "npm run build:js & npm run build:js-dev & npm run build:py"
   },
   "author": "{{ cookiecutter.full_name }} {{ cookiecutter.email }}",
   "license": "{{ cookiecutter.open_source_license }}",
