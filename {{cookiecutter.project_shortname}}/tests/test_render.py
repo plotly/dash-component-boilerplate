@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from {{cookiecutter.project_slug}} import {{cookiecutter.component_name}} # pylint: disable=no-name-in-module
+from {{cookiecutter.project_shortname}} import {{cookiecutter.component_name}} # pylint: disable=no-name-in-module
 
 
 class Tests(IntegrationTests):

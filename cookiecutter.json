@@ -1,13 +1,13 @@
 {
-  "full_name": "Enter name",
-  "email": "Enter email",
-  "description": "description",
   "project_name": "my dash component",
-  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
-  "version": "0.1.0",
+  "project_shortname": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
   "component_name": "{{ cookiecutter.project_name.replace(' ', '').replace('-', '') }}",
+  "full_name": "Enter your name (For package.json)",
+  "email": "Enter your email (For package.json)",
+  "description": "Project Description",
   "publish_on_npm": true,
-  "open_source_license": [
+  "version": "0.1.0",
+  "license": [
     "MIT License",
     "BSD License",
     "ISC License",

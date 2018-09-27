@@ -1,4 +1,4 @@
-import {{cookiecutter.project_slug}}
+import {{cookiecutter.project_shortname}}
 import dash
 from dash.dependencies import Input, Output
 import dash_html_components as html
@@ -9,7 +9,7 @@ app.scripts.config.serve_locally = True
 app.css.config.serve_locally = True
 
 app.layout = html.Div([
-    {{cookiecutter.project_slug}}.{{cookiecutter.component_name}}(
+    {{cookiecutter.project_shortname}}.{{cookiecutter.component_name}}(
         id='input',
         value='my-value',
         label='my-label'

@@ -14,7 +14,7 @@ $ cookiecutter git@github.com:plotly/dash-component-boilerplate.git
 ```
 3. Install dependencies
     ```
-    $ cd {{cookiecutter.project_slug}}
+    $ cd {{cookiecutter.project_shortname}}
     ```
     1. Install npm packages
     ```
@@ -76,7 +76,7 @@ $ cookiecutter git@github.com:plotly/dash-component-boilerplate.git
 7. Share your component with the community! https://community.plot.ly/c/dash
 
 # More details
-- Include CSS files in your distribution folder (`{{cookiecutter.project_slug}}`) and reference them in `MANIFEST.in`
+- Include CSS files in your distribution folder (`{{cookiecutter.project_shortname}}`) and reference them in `MANIFEST.in`
 - The `tests` folder contains a sample integration test. This will run a sample Dash app in a browser. Run this with:
     ```
     $ python -m unittest tests.test_render
