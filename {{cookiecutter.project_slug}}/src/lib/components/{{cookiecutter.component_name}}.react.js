@@ -14,7 +14,7 @@ export default class {{cookiecutter.component_name}} extends Component {
 
         return (
             <div id={id}>
-                ExampleComponent: {label}
+                ExampleComponent: {label}&nbsp;
                 <input
                     value={value}
                     onChange={e => {
