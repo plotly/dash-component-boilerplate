@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
-import ExampleComponent from './components/ExampleComponent.react';
+import {{cookiecutter.component_name}} from './components/{{cookiecutter.component_name}}.react';
 
 export {
-    ExampleComponent
+    {{cookiecutter.component_name}}
 };

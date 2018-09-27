@@ -6,6 +6,9 @@ import json
 
 import dash as _dash
 
+# noinspection PyUnresolvedReferences
+from _imports_ import *
+
 if not hasattr(_dash, 'development'):
     print('Dash was not successfully imported. '
           'Make sure you don\'t have a file '

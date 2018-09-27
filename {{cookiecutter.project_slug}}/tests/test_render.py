@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from my_dash_component import ExampleComponent  # pylint: disable=no-name-in-module
+from {{cookiecutter.project_slug}} import {{cookiecutter.component_name}} # pylint: disable=no-name-in-module
 
 
 class Tests(IntegrationTests):
@@ -13,7 +13,7 @@ class Tests(IntegrationTests):
         app = dash.Dash(__name__)
         app.layout = html.Div([
             html.Div(id='waitfor'),
-            ExampleComponent(label='Example Component Label')
+            {{cookiecutter.component_name}}(label='Example Component Label')
         ])
 
         self.startServer(app)

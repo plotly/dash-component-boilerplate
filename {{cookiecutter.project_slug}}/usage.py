@@ -9,7 +9,7 @@ app.scripts.config.serve_locally = True
 app.css.config.serve_locally = True
 
 app.layout = html.Div([
-    {{cookiecutter.project_slug}}.ExampleComponent(
+    {{cookiecutter.project_slug}}.{{cookiecutter.component_name}}(
         id='input',
         value='my-value',
         label='my-label'
