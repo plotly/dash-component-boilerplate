@@ -7,7 +7,7 @@ email = '{{cookiecutter.email}}'
 
 def verify(variable_name, s):
     if '(For package.json)' in s:
-        print('Invalid {}: {}'.format(variable_name, s),
+        print('\nInvalid {}: {}\n'.format(variable_name, s),
               file=sys.stderr)
         sys.exit(-1)
 

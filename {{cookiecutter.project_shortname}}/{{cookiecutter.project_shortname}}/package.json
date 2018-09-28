@@ -11,7 +11,7 @@
     "build:all": "npm run build:js & npm run build:js-dev & npm run build:py"
   },
   "author": "{{ cookiecutter.full_name }} {{ cookiecutter.email }}",
-  "license": "{{ cookiecutter.open_source_license }}",
+  "license": "{{ cookiecutter.license }}",
   "dependencies": {
     "ramda": "^0.25.0",
     "react": "15.4.2",
