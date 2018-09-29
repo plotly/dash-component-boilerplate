@@ -5,7 +5,6 @@
   "full_name": "Enter your name (For package.json)",
   "email": "Enter your email (For package.json)",
   "description": "Project Description",
-  "publish_on_npm": true,
   "version": "0.1.0",
   "license": [
     "MIT License",
@@ -15,5 +14,6 @@
     "GNU General Public License v3",
     "Not open source"
   ],
+  "publish_on_npm": true,
   "install_dependencies": true
 }
