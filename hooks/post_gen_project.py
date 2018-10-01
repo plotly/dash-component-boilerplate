@@ -6,15 +6,13 @@ import os
 import subprocess
 import json
 import collections
-import time
 
 install_deps = '{{cookiecutter.install_dependencies}}'
 project_shortname = '{{cookiecutter.project_shortname}}'
+python_executable = os.path.join('venv', 'Scripts', 'python')
 
 if install_deps != 'True':
     sys.exit(0)
-
-print('\n\nInstalling dependencies\n', file=sys.stderr)
 
 
 def _execute_command(cmd):
@@ -33,13 +31,6 @@ def _execute_command(cmd):
     return status
 
 
-# Create a virtual env
-_execute_command('pip install virtualenv --upgrade --quiet')
-_execute_command('virtualenv venv')
-
-# Install dev dependencies in virtualenv
-python_executable = os.path.join('venv', 'Scripts', 'python')
-
 # Patch up the package.json to use the venv python for class generation.
 print('Patching build command')
 
@@ -56,6 +47,10 @@ with open('package.json', 'r+') as package_file:
 
     json.dump(package_json, package_file, indent=4)
 
+# Create a virtual env
+_execute_command('virtualenv venv')
+
+print('\n\nInstalling dependencies\n', file=sys.stderr)
 
 # Install python requirements.
 _execute_command(
