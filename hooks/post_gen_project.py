@@ -11,6 +11,23 @@ install_deps = '{{cookiecutter.install_dependencies}}'
 project_shortname = '{{cookiecutter.project_shortname}}'
 python_executable = os.path.join('venv', 'Scripts', 'python')
 
+
+def _execute_command(cmd):
+    line = shlex.split(cmd, posix=not sys.platform == 'win32')
+
+    print('Executing: {}'.format(cmd))
+
+    # call instead of Popen to get realtime output
+    status = subprocess.call(line, shell=True)
+
+    if status != 0:
+        print('post_gen_project command failed: {}'.format(cmd),
+              file=sys.stderr)
+        sys.exit(status)
+
+    return status
+
+
 # Patch up the package.json to use the venv python for class generation.
 # If install_dependencies is false, the venv must be created manually and
 # the requirements installed.
@@ -28,22 +45,6 @@ with open('package.json', 'r+') as package_file:
     package_file.truncate(0)
 
     json.dump(package_json, package_file, indent=4)
-
-
-def _execute_command(cmd):
-    line = shlex.split(cmd, posix=not sys.platform == 'win32')
-
-    print('Executing: {}'.format(cmd))
-
-    # call instead of Popen to get realtime output
-    status = subprocess.call(line)
-
-    if status != 0:
-        print('post_gen_project command failed: {}'.format(cmd),
-              file=sys.stderr)
-        sys.exit(status)
-
-    return status
 
 
 if install_deps != 'True':
