@@ -11,6 +11,7 @@ To use this boilerplate:
     $ pip install cookiecutter
     $ pip install virtualenv
     ```
+    npm is also required.
 2. Run cookiecutter on the boilerplate repo:
     ```
     $ cookiecutter git@github.com:plotly/dash-component-boilerplate.git
