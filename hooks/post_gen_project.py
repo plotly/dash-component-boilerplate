@@ -11,8 +11,23 @@ install_deps = '{{cookiecutter.install_dependencies}}'
 project_shortname = '{{cookiecutter.project_shortname}}'
 python_executable = os.path.join('venv', 'Scripts', 'python')
 
-if install_deps != 'True':
-    sys.exit(0)
+# Patch up the package.json to use the venv python for class generation.
+# If install_dependencies is false, the venv must be created manually and
+# the requirements installed.
+print('Patching build command')
+
+with open('package.json', 'r+') as package_file:
+    package_json = json.load(package_file,
+                             object_pairs_hook=collections.OrderedDict)
+
+    package_json['scripts']['build:py'] \
+        = package_json['scripts']['build:py'].replace(
+        '%(python_path)', python_executable)
+
+    package_file.seek(0)
+    package_file.truncate(0)
+
+    json.dump(package_json, package_file, indent=4)
 
 
 def _execute_command(cmd):
@@ -31,21 +46,12 @@ def _execute_command(cmd):
     return status
 
 
-# Patch up the package.json to use the venv python for class generation.
-print('Patching build command')
-
-with open('package.json', 'r+') as package_file:
-    package_json = json.load(package_file,
-                             object_pairs_hook=collections.OrderedDict)
-
-    package_json['scripts']['build:py'] \
-        = package_json['scripts']['build:py'].replace(
-        '%(python_path)', python_executable)
-
-    package_file.seek(0)
-    package_file.truncate(0)
-
-    json.dump(package_json, package_file, indent=4)
+if install_deps != 'True':
+    print('`install_requirements` is false!!', file=sys.stderr)
+    print('Please create a venv in your project root'
+          ' and install the dependencies in requirements.txt',
+          file=sys.stderr)
+    sys.exit(0)
 
 # Create a virtual env
 _execute_command('virtualenv venv')
