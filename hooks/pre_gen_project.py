@@ -1,8 +1,8 @@
 from __future__ import print_function
 import sys
 
-full_name = '{{cookiecutter.full_name}}'
-email = '{{cookiecutter.email}}'
+full_name = '{{cookiecutter.author_name}}'
+email = '{{cookiecutter.author_email}}'
 
 
 def verify(variable_name, s):
@@ -12,7 +12,7 @@ def verify(variable_name, s):
         sys.exit(-1)
 
 
-for name, value in (('full_name', full_name), ('email', email)):
+for name, value in (('author_name', full_name), ('author_email', email)):
     verify(name, value)
 
 sys.exit(0)

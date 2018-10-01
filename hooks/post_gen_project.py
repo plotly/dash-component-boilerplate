@@ -48,7 +48,7 @@ with open('package.json', 'r+') as package_file:
 
 
 if install_deps != 'True':
-    print('`install_requirements` is false!!', file=sys.stderr)
+    print('`install_dependencies` is false!!', file=sys.stderr)
     print('Please create a venv in your project root'
           ' and install the dependencies in requirements.txt',
           file=sys.stderr)
