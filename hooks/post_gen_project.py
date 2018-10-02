@@ -9,16 +9,23 @@ import collections
 
 install_deps = '{{cookiecutter.install_dependencies}}'
 project_shortname = '{{cookiecutter.project_shortname}}'
-python_executable = os.path.join('venv', 'Scripts', 'python')
+
+
+is_windows = sys.platform == 'win32'
+
+if is_windows:
+    python_executable = os.path.join('venv', 'Scripts', 'python')
+else:
+    python_executable = os.path.join('venv', 'bin', 'python')
 
 
 def _execute_command(cmd):
-    line = shlex.split(cmd, posix=not sys.platform == 'win32')
+    line = shlex.split(cmd, posix=not is_windows)
 
     print('Executing: {}'.format(cmd))
 
     # call instead of Popen to get realtime output
-    status = subprocess.call(line, shell=True)
+    status = subprocess.call(line, shell=is_windows)
 
     if status != 0:
         print('post_gen_project command failed: {}'.format(cmd),
