@@ -1,4 +1,6 @@
 dash
+dash-html-components
+dash-core-components
 pytest
 pytest-cookies
 pytest-selenium
