@@ -48,12 +48,21 @@ def test_install(cookies, app, selenium):
         # 'install_dependencies': False
     })
 
+    # Add the generated project to the path so it can be loaded from usage.py
     sys.path.insert(0, str(results.project))
 
     app(str(results.project.join('usage.py')))
 
     selenium.get('http://localhost:8050')
     time.sleep(1)
+
+    input_component = selenium.find_element_by_id('input')
+    input_component.send_keys('Hello dash component')
+    time.sleep(1)
+
+    output = selenium.find_element_by_id('output')
+
+    assert output.text == 'You have entered Hello dash component'
 
     node_modules = str(results.project.join('node_modules'))
 
