@@ -56,7 +56,8 @@ def test_install(cookies, app, selenium):
     selenium.get('http://localhost:8050')
     time.sleep(1)
 
-    input_component = selenium.find_element_by_id('input')
+    input_component = selenium.find_element_by_xpath(
+        '//div[@id="input"]/input')
     input_component.send_keys('Hello dash component')
     time.sleep(1)
 
