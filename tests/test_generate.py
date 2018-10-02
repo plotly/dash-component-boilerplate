@@ -1,14 +1,16 @@
 import json
 import os
 
+default_context = {
+    'install_dependencies': False,
+    'project_name': 'Test Component',
+    'author_name': 'test',
+    'author_email': 'test@example.com'
+}
+
 
 def test_package_json(cookies):
-    result = cookies.bake(extra_context={
-        'install_dependencies': False,
-        'project_name': 'Test Component',
-        'full_name': 'test',
-        'email': 'test@example.com'
-    })
+    result = cookies.bake(extra_context=default_context)
 
     package_json = json.loads(result.project.join('package.json').read())
 
@@ -16,3 +18,6 @@ def test_package_json(cookies):
     assert package_json['license'] == 'MIT'
     assert os.path.join('venv', 'Scripts', 'python')\
         in package_json['scripts']['build:py']
+    assert package_json['author'] == \
+        '{} {}'.format(default_context['author_name'],
+                       default_context['author_email'])
