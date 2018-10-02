@@ -1,5 +1,7 @@
 import json
 import os
+import sys
+
 
 default_context = {
     'install_dependencies': False,
@@ -14,10 +16,14 @@ def test_package_json(cookies):
 
     package_json = json.loads(result.project.join('package.json').read())
 
+    if sys.platform == 'win32':
+        python = os.path.join('venv', 'Scripts', 'python')
+    else:
+        python = os.path.join('venv', 'bin', 'python')
+
     assert package_json['name'] == 'test_component'
     assert package_json['license'] == 'MIT'
-    assert os.path.join('venv', 'Scripts', 'python')\
-        in package_json['scripts']['build:py']
+    assert python in package_json['scripts']['build:py']
     assert package_json['author'] == \
         '{} {}'.format(default_context['author_name'],
                        default_context['author_email'])
