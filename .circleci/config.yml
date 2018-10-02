@@ -34,7 +34,7 @@ jobs:
                 name: Generations tests
                 command: |
                     . venv/bin/activate
-                    pytest tests
+                    pytest tests --drive Chrome
                 when: always
 
 

@@ -55,5 +55,11 @@ def test_install(cookies, app, selenium):
     selenium.get('http://localhost:8050')
     time.sleep(1)
 
-    shutil.rmtree('\\\\?\\' + str(results.project.join('node_modules')))
+    node_modules = str(results.project.join('node_modules'))
+
+    if sys.platform == 'win32':
+        # Fix delete long names on windows.
+        node_modules = '\\\\?\\' + node_modules
+
+    shutil.rmtree(node_modules)
 

@@ -1,3 +1,4 @@
 dash
 pytest
 pytest-cookies
+pytest-selenium
