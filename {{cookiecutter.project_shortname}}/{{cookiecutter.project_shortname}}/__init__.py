@@ -34,10 +34,8 @@ _js_dist = [
         'relative_package_path': '{}.min.js'.format(__name__),
         'dev_package_path': '{}.dev.js'.format(__name__),
         {% if cookiecutter.publish_on_npm == 'True' -%}
-        'external_url': (
-            'https://unpkg.com/my_dash_component'
-            '/' + package_name + '/bundle.js'
-        ).format(__version__),
+        'external_url': 'https://unpkg.com/{0}@{1}/{0}/{0}.min.js'.format(
+            __name__, __version__),
         {%- endif %}
         'namespace': package_name
     }
