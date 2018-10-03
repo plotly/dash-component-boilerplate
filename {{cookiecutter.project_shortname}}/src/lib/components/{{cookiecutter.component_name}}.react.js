@@ -45,6 +45,8 @@ export default class {{cookiecutter.component_name}} extends Component {
     }
 }
 
+{{cookiecutter.component_name}}.defaultProps = {};
+
 {{cookiecutter.component_name}}.propTypes = {
     /**
      * The ID used to identify this component in Dash callbacks
