@@ -12,3 +12,4 @@ percy
 selenium
 flake8
 pylint
+pytest-dash
