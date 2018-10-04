@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-    "python-3.6":
+    "python-3.6": &test-template
         docker:
             - image: circleci/python:3.6-stretch-node-browsers
 
@@ -37,9 +37,15 @@ jobs:
                     pytest tests --driver Chrome
                 when: always
 
+    "python-2.7":
+        <<: *test-template
+        docker:
+            - image: circleci/python:2.7-stretch-node-browsers
+
 
 workflows:
     version: 2
     build:
         jobs:
             - "python-3.6"
+            - "python-2.7"
