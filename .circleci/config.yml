@@ -11,8 +11,12 @@ jobs:
         steps:
             - checkout
 
+            - run:
+                name: Write job name.
+                command: echo $CIRCLE_JOB > circlejob.txt
+
             - restore_cache:
-                key: deps1-{{ .Branch }}-{{ checksum "tests/requirements.txt" }}
+                key: deps1-{{ .Branch }}-{{ checksum "circlejob.txt" }}-{{ checksum "tests/requirements.txt" }}-{{ checksum ".circleci/config.yml" }}
 
             - run:
                 name: Create virtualenv
@@ -27,7 +31,7 @@ jobs:
                     pip install -r tests/requirements.txt --quiet
 
             - save_cache:
-                key: deps1-{{ .Branch }}-{{ checksum "tests/requirements.txt" }}
+                key: deps1-{{ .Branch }}-{{ checksum "circlejob.txt" }}-{{ checksum "tests/requirements.txt" }}-{{ checksum ".circleci/config.yml" }}
                 paths:
                     - "venv"
 
