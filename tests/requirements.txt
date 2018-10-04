@@ -4,3 +4,4 @@ dash-core-components
 pytest
 pytest-cookies
 pytest-selenium
+pytest-dash
