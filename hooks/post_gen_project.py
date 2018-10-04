@@ -7,6 +7,8 @@ import subprocess
 import json
 import collections
 
+import six
+
 install_deps = '{{cookiecutter.install_dependencies}}'
 project_shortname = '{{cookiecutter.project_shortname}}'
 
@@ -62,7 +64,13 @@ if install_deps != 'True':
     sys.exit(0)
 
 # Create a virtual env
-_execute_command('virtualenv venv')
+if sys.version.split(' ')[0] > '3.2':
+    venv = 'python -m venv venv'
+else:
+    venv = 'virtualenv venv'
+
+_execute_command(venv)
+
 
 print('\n\nInstalling dependencies\n', file=sys.stderr)
 
