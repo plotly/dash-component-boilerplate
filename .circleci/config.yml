@@ -17,6 +17,7 @@ jobs:
             - run:
                 name: Create virtualenv
                 command: |
+                    sudo pip install virtualenv
                     python -m venv venv || virtualenv venv
 
             - run:
