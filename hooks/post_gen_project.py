@@ -87,7 +87,7 @@ _execute_command(
    r'{} -m pip install -r requirements.txt'.format(python_executable))
 
 # Install node_modules
-_execute_command('npm install')
+_execute_command('npm install --ignore-scripts')
 
 # Run the first build
 print('Building initial bundles...')
