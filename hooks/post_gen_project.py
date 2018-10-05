@@ -7,8 +7,6 @@ import subprocess
 import json
 import collections
 
-import six
-
 install_deps = '{{cookiecutter.install_dependencies}}'
 project_shortname = '{{cookiecutter.project_shortname}}'
 
@@ -69,8 +67,18 @@ if sys.version.split(' ')[0] > '3.2':
 else:
     venv = 'virtualenv venv'
 
-_execute_command(venv)
-
+# noinspection PyBroadException
+try:
+    _execute_command(venv)
+except BaseException:
+    print(
+        '''
+        venv creation failed.
+        Make sure you have installed virtualenv on python 2.
+        ''',
+        file=sys.stderr
+    )
+    raise
 
 print('\n\nInstalling dependencies\n', file=sys.stderr)
 
