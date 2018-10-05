@@ -7,7 +7,7 @@
     "start": "webpack-serve ./webpack.serve.config.js --open",
     "build:js-dev": "webpack --mode development",
     "build:js": "webpack --mode production",
-    "build:py": "node ./extract-meta src/lib/components > {{cookiecutter.project_shortname}}/metadata.json && copyfiles package.json {{cookiecutter.project_shortname}} && %(python_path) -c \"import dash; dash.development.component_loader.generate_classes('{{cookiecutter.project_shortname}}', '{{cookiecutter.project_shortname}}/metadata.json')\"",
+    "build:py": "node ./extract-meta.js src/lib/components > {{cookiecutter.project_shortname}}/metadata.json && copyfiles package.json {{cookiecutter.project_shortname}} && %(python_path) -c \"import dash; dash.development.component_loader.generate_classes('{{cookiecutter.project_shortname}}', '{{cookiecutter.project_shortname}}/metadata.json')\"",
     "build:all": "npm run build:js & npm run build:js-dev & npm run build:py"
   },
   "author": "{{ cookiecutter.author_name }} {{ cookiecutter.author_email }}",
