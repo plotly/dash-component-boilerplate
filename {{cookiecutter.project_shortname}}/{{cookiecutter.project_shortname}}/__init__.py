@@ -31,8 +31,8 @@ _this_module = _sys.modules[__name__]
 
 _js_dist = [
     {
-        'relative_package_path': '{}.min.js'.format(__name__),
-        'dev_package_path': '{}.dev.js'.format(__name__),
+        'relative_package_path': '{{cookiecutter.project_shortname}}.min.js',
+        'dev_package_path': '{{cookiecutter.project_shortname}}.dev.js',
         {% if cookiecutter.publish_on_npm == 'True' -%}
         'external_url': 'https://unpkg.com/{0}@{1}/{0}/{0}.min.js'.format(
             __name__, __version__),
