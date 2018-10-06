@@ -43,26 +43,25 @@ def check_manifest(filename):
     return filename in manifest
 
 
+def check_file(dist, filename):
+    if not check_dist(dist, filename):
+        print(
+            missing_dist_msg.format(filename, components_package, '_js_dist'),
+            file=sys.stderr
+        )
+    if not check_manifest(filename):
+        print(missing_manifest_msg.format(filename),
+              file=sys.stderr)
+
+
 for cur, _, files in os.walk(components_package):
     for f in files:
 
         if f.endswith('js'):
             # noinspection PyProtectedMember
-            if not check_dist(components_lib._js_dist, f):
-                print(
-                    missing_dist_msg.format(f, components_package, '_js_dist'),
-                    file=sys.stderr
-                )
-            if not check_manifest(f):
-                print(missing_manifest_msg.format(f),
-                      file=sys.stderr)
+            check_file(components_lib._js_dist, f)
         elif f.endswith('css'):
             # noinspection PyProtectedMember
-            if not check_dist(components_lib._css_dist, f):
-                print(
-                    missing_dist_msg.format(f, components_package, '_css_dist'),
-                    file=sys.stderr
-                )
-            if not check_manifest(f):
-                print(missing_manifest_msg.format(f),
-                      file=sys.stderr)
+            check_file(components_lib._css_dist, f)
+        elif not f.endswith('py'):
+            check_manifest(f)
