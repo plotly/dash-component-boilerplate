@@ -33,7 +33,7 @@ def check_dist(dist, filename):
         for d in dist
         for x in (
             [d.get('relative_package_path')]
-            if isinstance(d.get('relative_package_path'), str)
+            if not isinstance(d.get('relative_package_path'), list)
             else d.get('relative_package_path')
         )
     )
