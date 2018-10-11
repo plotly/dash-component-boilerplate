@@ -12,7 +12,6 @@
   "author": "my-name my-email",
   "license": "my-license",
   "dependencies": {
-    "ramda": "^0.25.0",
     "react": "15.4.2",
     "react-dom": "15.4.2"
   },
