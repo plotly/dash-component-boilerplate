@@ -1,7 +1,5 @@
 /* eslint no-magic-numbers: 0 */
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import * as R from 'ramda';
 
 import {{cookiecutter.component_name}} from '../lib';
 
