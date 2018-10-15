@@ -17,12 +17,12 @@ To use this boilerplate:
     $ cookiecutter git@github.com:plotly/dash-component-boilerplate.git
     ```
 3. Answer the questions about the project.
-    - project name
-    - component name
-    - author info
-    - description
-    - version
-    - license
+    - project name: Clean project name, can contains spaces and special characters.
+    - component name: derived from project_name, lowercase, spaces and '-' are replaced by '_', ascii only.
+    - author info: author_name and author_email for package.json metadata.
+    - description: the project description, included in package.json.
+    - version: The initial version.
+    - license: License type for the component lib.
     - publish_on_npm: Set to false to only serve locally from the package data.
     - install_dependencies: Set to false to only generate the project structure.
 4. The project will be generated in the folder of `project_shortname`.
