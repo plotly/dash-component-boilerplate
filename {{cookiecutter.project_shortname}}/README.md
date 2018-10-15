@@ -38,6 +38,14 @@ If you have selected install_dependencies during the prompt, you can skip this p
         ```
         $ python usage.py
         ```
+- Write tests for your component.
+    - A sample test is available in `tests/test_usage.py`, it will load `usage.py` and you can then automate interactions with selenium.
+    - Run the tests with `$ pytest tests`.
+    - The Dash team uses these types of integration tests extensively. Browse the Dash component code on GitHub for more examples of testing (e.g. https://github.com/plotly/dash-core-components)
+- Add custom styles to your component by putting your custom CSS files into your distribution folder (`{{cookiecutter.project_shortname}}`).
+    - Make sure that they are referenced in `MANIFEST.in` so that they get properly included when you're ready to publish your component.
+    - Make sure the stylesheets are added to the `_css_dist` dict in `{{cookiecutter.project_shortname}}/__init__.py` so dash will serve them automatically when the component suite is requested.
+- [Review your code](./review_checklist.md)
 
 ### Create a production build and publish:
 
@@ -69,20 +77,10 @@ If you have selected install_dependencies during the prompt, you can skip this p
         ```
         $ npm publish
         ```
+        _Publishing your component to NPM will make the JavaScript bundles available on the unpkg CDN. By default, Dash servers the component library's CSS and JS from the remote unpkg CDN, so if you haven't published the component package to NPM you'll need to set the `serve_locally` flags to `True` (unless you choose `False` on `publish_on_npm`). We will eventually make `serve_locally=True` the default, [follow our progress in this issue](https://github.com/plotly/dash/issues/284)._
 5. Share your component with the community! https://community.plot.ly/c/dash
-
-## More details
-- Include CSS files in your distribution folder (`{{cookiecutter.project_shortname}}`) and reference them in `MANIFEST.in`
-- The `tests` folder contains a sample integration test. This will run a sample Dash app in a browser. Run this with:
-    ```
-    $ pytest tests
-    ```
-    The Dash team uses these types of integration tests extensively. Browse the Dash component code on GitHub for more examples of testing (e.g. https://github.com/plotly/dash-core-components)
-- Publishing your component to NPM will make the JavaScript bundles available on the unpkg CDN. By default, Dash servers the component library's CSS and JS from the remote unpkg CDN, so if you haven't published the component package to NPM you'll need to set the `serve_locally` flags to `True` (unless you choose `False` on `publish_on_npm`). We will eventually make `serve_locally=True` the default, [follow our progress in this issue](https://github.com/plotly/dash/issues/284).
-- Watch the [component boilerplate repository](https://github.com/plotly/dash-component-boilerplate) to stay informed of changes to our components.
-
 
 ## More Resources
 - Learn more about Dash: https://dash.plot.ly
-- View the original component boilerplate: https://github.com/plotly/dash-component-boilerplate
+- Watch the [component boilerplate repository](https://github.com/plotly/dash-component-boilerplate) to stay informed of changes to our components.
 - [React guide for python developers](https://dash.plot.ly/react-for-python-developers)
