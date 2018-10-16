@@ -80,7 +80,4 @@ If you have selected install_dependencies during the prompt, you can skip this p
         _Publishing your component to NPM will make the JavaScript bundles available on the unpkg CDN. By default, Dash servers the component library's CSS and JS from the remote unpkg CDN, so if you haven't published the component package to NPM you'll need to set the `serve_locally` flags to `True` (unless you choose `False` on `publish_on_npm`). We will eventually make `serve_locally=True` the default, [follow our progress in this issue](https://github.com/plotly/dash/issues/284)._
 5. Share your component with the community! https://community.plot.ly/c/dash
 
-## More Resources
-- Learn more about Dash: https://dash.plot.ly
-- Watch the [component boilerplate repository](https://github.com/plotly/dash-component-boilerplate) to stay informed of changes to our components.
-- [React guide for python developers](https://dash.plot.ly/react-for-python-developers)
+
