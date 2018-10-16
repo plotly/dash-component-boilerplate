@@ -17,13 +17,14 @@ To use this boilerplate:
     $ cookiecutter git@github.com:plotly/dash-component-boilerplate.git
     ```
 3. Answer the questions about the project.
-    - project name: Clean project name, can contains spaces and special characters.
-    - component name: derived from project_name, lowercase, spaces and '-' are replaced by '_', ascii only.
-    - author info: author_name and author_email for package.json metadata.
-    - description: the project description, included in package.json.
-    - license: License type for the component library.
-    - publish_on_npm: Set to false to only serve locally from the package data.
-    - install_dependencies: Set to false to only generate the project structure.
+    - `project_name`: This is the "human-readable" name of your project. For example, "Dash Core Components". 
+    - `project_shortname`: is derived from the project name, it is the name of the "python library" for your project. By default, this is generated from your `project_name` by lowercasing the name and replacing spaces & `-` with underscores. For example, for "Dash Core Components" this would be "dash_core_components".
+    - `component_name`: This is the name of the initial component that is generated. The default takes the `project_name` and remove the whitespace and `-`. As a javascript class name it should be in PascalCase.
+    - `author info`: author_name and author_email for package.json metadata.
+    - `description`: the project description, included in package.json.
+    - `license`: License type for the component library.
+    - `publish_on_npm`: Set to false to only serve locally from the package data.
+    - `install_dependencies`: Set to false to only generate the project structure.
 4. The project will be generated in the folder of `project_shortname`.
 5. Follow the directions in the generated README to start developing your new Dash component.
 
