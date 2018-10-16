@@ -1,0 +1,18 @@
+{
+  "project_name": "my dash component",
+  "project_shortname": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "component_name": "{{ cookiecutter.project_name.replace(' ', '').replace('-', '') }}",
+  "author_name": "Enter your name (For package.json)",
+  "author_email": "Enter your email (For package.json)",
+  "description": "Project Description",
+  "license": [
+    "MIT License",
+    "BSD License",
+    "ISC License",
+    "Apache Software License 2.0",
+    "GNU General Public License v3",
+    "Not open source"
+  ],
+  "publish_on_npm": true,
+  "install_dependencies": true
+}

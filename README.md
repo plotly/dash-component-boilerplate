@@ -1,71 +1,45 @@
 # Dash Component Boilerplate
 
-This repository contains the minimal set of code required to create your own custom Dash component.
+This repository contains a [Cookiecutter](https://github.com/audreyr/cookiecutter) template to create your own Dash components.
 
-To create your own Dash component:
-1. Fork this repo
-2. Find-and-replace:
-    1. `my_dash_component` with your component library name.
-    2. `my-dash-component` with your component library name.
-    3. `my-name` with your name and `my-email` with your email address
-    4. `my-license` with your license (e.g. `MIT`)
-    5. Rename the folder `my_dash_component/` with your component library name
-3. Install the dependencies:
-```
-npm install
-```
-4. Open up the JavaScript demo environment:
-```
-npm run start
-```
-5. Write your component code in `src/lib/components`. There is a sample component called `ExampleComponent.react.js` that you can use for inspiration. The demo app is in `src/demo` and you will import your example component code into your demo app.
-6. Test your code in a Python environment:
-    1. Build your code
-    ```
-    npm run build:js-dev
-    npm run build:py
-    ```
-    2. Run and modify the `usage.py` sample dash app:
-    ```
-    python usage.py
-    ```
-7. Create a production build and publish:
-    1. Build your code:
-    ```
-    npm run build:js
-    npm run build:py
-    ```
-    2. Create a Python tarball
-    ```
-    python setup.py sdist
-    ```
-    This distribution tarball will get generated in the `dist/` folder
+## Usage
 
-    3. Test your tarball by copying it into a new environment and installing it locally:
-    ```
-    pip install my_dash_component-0.0.1.tar.gz
-    ```
+To use this boilerplate:
 
-    4. If it works, then you can publish the component to NPM and PyPI:
+1. Install the requirements:
     ```
-    npm run publish
+    $ pip install cookiecutter
+    $ pip install virtualenv
     ```
+   [Node.js/npm is also required.](https://nodejs.org/en/)
+2. Run cookiecutter on the boilerplate repo:
     ```
-    twine upload dist/dash_component-0.0.1.tar.gz
+    $ cookiecutter git@github.com:plotly/dash-component-boilerplate.git
     ```
-8. Share your component with the community! https://community.plot.ly/c/dash
+3. Answer the questions about the project.
+    - `project_name`: This is the "human-readable" name of your project. For example, "Dash Core Components". 
+    - `project_shortname`: is derived from the project name, it is the name of the "python library" for your project. By default, this is generated from your `project_name` by lowercasing the name and replacing spaces & `-` with underscores. For example, for "Dash Core Components" this would be "dash_core_components".
+    - `component_name`: This is the name of the initial component that is generated. The default takes the `project_name` and remove the whitespace and `-`. As a javascript class name it should be in PascalCase.
+    - `author info`: author_name and author_email for package.json metadata.
+    - `description`: the project description, included in package.json.
+    - `license`: License type for the component library.
+    - `publish_on_npm`: Set to false to only serve locally from the package data.
+    - `install_dependencies`: Set to false to only generate the project structure.
+4. The project will be generated in the folder of `project_shortname`.
+5. Follow the directions in the generated README to start developing your new Dash component.
 
-# More details
-- Include CSS files in your distribution folder (`my_dash_component`) and reference them in `MANIFEST.in`
-- The `tests` folder contains a sample integration test. This will run a sample Dash app in a browser. Run this with:
-    ```
-    python -m tests.test_render
-    ```
-    The Dash team uses these types of integration tests extensively. Browse the Dash component code on GitHub for more examples of testing (e.g. https://github.com/plotly/dash-core-components)
-- Publishing your component to NPM will make the JavaScript bundles available on the unpkg CDN. By default, Dash servers the component library's CSS and JS from the remote unpkg CDN, so if you haven't published the component package to NPM you'll need to set the `serve_locally` flags to `True`. We will eventually make `serve_locally=True` the default, [follow our progress in this issue](https://github.com/plotly/dash/issues/284).
-- Watch the [component boilerplate repository](https://github.com/plotly/dash-component-boilerplate) to stay informed of changes to our components.
+Installing the dependencies can take a long time. They will be installed in a
+folder named `venv`, created by virtualenv. This ensures that dash is installed
+to generate the components in the `build:py` script of the generated 
+`package.json`.
 
 
-# More Resources
+## More Resources
+
 - Learn more about Dash: https://dash.plot.ly
-- View the original component boilerplate: https://github.com/plotly/dash-component-boilerplate
+- Questions about this project? Create an issue: https://github.com/plotly/dash-component-boilerplate/issues/new
+- Watch the [component boilerplate repository](https://github.com/plotly/dash-component-boilerplate) to stay informed of changes to our components.
+- [React guide for python developers](https://dash.plot.ly/react-for-python-developers)
+- Need help with your component? View the Dash Community Forum: https://community.plot.ly/c/dash
+- Examples of Dash component libraries include `dash-core-components`: https://github.com/plotly/dash-core-components` and `dash-html-components`: https://github.com/plotly/dash-html-components.
+- To get a feel for what's involved in creating a component, read through the [README.MD file that this cookiecutter project generates](/cookie-cutter/%7B%7Bcookiecutter.project_shortname%7D%7D/README.md)

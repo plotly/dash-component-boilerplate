@@ -6,6 +6,10 @@ import json
 
 import dash as _dash
 
+# noinspection PyUnresolvedReferences
+from ._imports_ import *
+from ._imports_ import __all__
+
 if not hasattr(_dash, 'development'):
     print('Dash was not successfully imported. '
           'Make sure you don\'t have a file '
@@ -21,21 +25,18 @@ package_name = package['name'].replace(' ', '_').replace('-', '_')
 __version__ = package['version']
 
 _current_path = _os.path.dirname(_os.path.abspath(__file__))
-_components = _dash.development.component_loader.load_components(
-    _os.path.join(_current_path, 'metadata.json'),
-    package_name
-)
 
 _this_module = _sys.modules[__name__]
 
 
 _js_dist = [
     {
-        'relative_package_path': 'bundle.js',
-        'external_url': (
-            'https://unpkg.com/my_dash_component'
-            '/' + package_name + '/bundle.js'
-        ).format(__version__),
+        'relative_package_path': '{{cookiecutter.project_shortname}}.min.js',
+        'dev_package_path': '{{cookiecutter.project_shortname}}.dev.js',
+        {% if cookiecutter.publish_on_npm == 'True' -%}
+        'external_url': 'https://unpkg.com/{0}@{1}/{0}/{0}.min.js'.format(
+            __name__, __version__),
+        {%- endif %}
         'namespace': package_name
     }
 ]
@@ -43,7 +44,6 @@ _js_dist = [
 _css_dist = []
 
 
-for _component in _components:
-    setattr(_this_module, _component.__name__, _component)
-    setattr(_component, '_js_dist', _js_dist)
-    setattr(_component, '_css_dist', _css_dist)
+for _component in __all__:
+    setattr(locals()[_component], '_js_dist', _js_dist)
+    setattr(locals()[_component], '_css_dist', _css_dist)

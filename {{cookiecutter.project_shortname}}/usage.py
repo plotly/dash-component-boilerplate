@@ -1,15 +1,15 @@
-import my_dash_component
+import {{cookiecutter.project_shortname}}
 import dash
 from dash.dependencies import Input, Output
 import dash_html_components as html
 
-app = dash.Dash('')
+app = dash.Dash(__name__)
 
 app.scripts.config.serve_locally = True
 app.css.config.serve_locally = True
 
 app.layout = html.Div([
-    my_dash_component.ExampleComponent(
+    {{cookiecutter.project_shortname}}.{{cookiecutter.component_name}}(
         id='input',
         value='my-value',
         label='my-label'

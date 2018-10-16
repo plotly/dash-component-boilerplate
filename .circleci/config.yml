@@ -1,48 +1,28 @@
 version: 2
 
 jobs:
-    "node":
+    "python-3.6": &test-template
         docker:
-            - image: circleci/node:8.11.3
-
-        steps:
-            - checkout
-
-            - restore_cache:
-                key: deps1-{{ .Branch }}-{{ checksum "package.json" }}
-
-            - run:
-                name: Install package.json
-                command: npm i
-
-            - save_cache:
-                key: deps1-{{ .Branch }}-{{ checksum "package.json" }}
-                paths:
-                    - node_modules
-
-            - run:
-                name: Run eslint
-                command: ./node_modules/.bin/eslint src
-                when: always
-
-
-    "python-3.6":
-        docker:
-            - image: circleci/python:3.6-stretch-browsers
+            - image: circleci/python:3.6-stretch-node-browsers
 
         environment:
-            PERCY_ENABLED: False
+            PERCY_ENABLE: 0
 
         steps:
             - checkout
 
+            - run:
+                name: Write job name.
+                command: echo $CIRCLE_JOB > circlejob.txt
+
             - restore_cache:
-                key: deps1-{{ .Branch }}-{{ checksum "tests/requirements.txt" }}
+                key: deps1-{{ .Branch }}-{{ checksum "circlejob.txt" }}-{{ checksum "tests/requirements.txt" }}-{{ checksum ".circleci/config.yml" }}
 
             - run:
                 name: Create virtualenv
                 command: |
-                    python3 -m venv venv
+                    sudo pip install virtualenv
+                    python -m venv venv || virtualenv venv
 
             - run:
                 name: Install requirements
@@ -51,30 +31,21 @@ jobs:
                     pip install -r tests/requirements.txt --quiet
 
             - save_cache:
-                key: deps1-{{ .Branch }}-{{ checksum "tests/requirements.txt" }}
+                key: deps1-{{ .Branch }}-{{ checksum "circlejob.txt" }}-{{ checksum "tests/requirements.txt" }}-{{ checksum ".circleci/config.yml" }}
                 paths:
                     - "venv"
 
             - run:
-                name: Run pylint
+                name: Generations tests
                 command: |
                     . venv/bin/activate
-                    pylint usage.py tests
+                    pytest tests --driver Chrome
                 when: always
 
-            - run:
-                name: Run flake8
-                command: |
-                    . venv/bin/activate
-                    flake8 usage.py tests
-                when: always
-
-            - run:
-                name: Integration Tests
-                command: |
-                    . venv/bin/activate
-                    python -m unittest tests.test_render
-                when: always
+    "python-2.7":
+        <<: *test-template
+        docker:
+            - image: circleci/python:2.7-stretch-node-browsers
 
 
 workflows:
@@ -82,4 +53,4 @@ workflows:
     build:
         jobs:
             - "python-3.6"
-            - "node"
+            - "python-2.7"

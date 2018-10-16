@@ -8,13 +8,13 @@ import PropTypes from 'prop-types';
  * It renders an input with the property `value`
  * which is editable by the user.
  */
-export default class ExampleComponent extends Component {
+export default class {{cookiecutter.component_name}} extends Component {
     render() {
         const {id, label, setProps, value} = this.props;
 
         return (
             <div id={id}>
-                ExampleComponent: {label}
+                ExampleComponent: {label}&nbsp;
                 <input
                     value={value}
                     onChange={e => {
@@ -45,7 +45,9 @@ export default class ExampleComponent extends Component {
     }
 }
 
-ExampleComponent.propTypes = {
+{{cookiecutter.component_name}}.defaultProps = {};
+
+{{cookiecutter.component_name}}.propTypes = {
     /**
      * The ID used to identify this component in Dash callbacks
      */

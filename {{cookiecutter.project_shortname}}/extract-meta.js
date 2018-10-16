@@ -35,6 +35,21 @@ function writeError(msg, filePath) {
     }
 }
 
+function checkWarn(name, value) {
+    if (value.length < 1) {
+        process.stderr.write(`\nDescription for ${name} is missing!\n`)
+    }
+}
+
+function docstringWarning(doc) {
+    checkWarn(doc.displayName, doc.description);
+
+    Object.entries(doc.props).forEach(
+        ([name, p]) => checkWarn(`${doc.displayName}.${name}`, p.description)
+    );
+}
+
+
 function parseFile(filepath) {
     const urlpath = filepath.split(path.sep).join('/');
     let src;
@@ -45,7 +60,8 @@ function parseFile(filepath) {
 
     try {
         src = fs.readFileSync(filepath);
-        metadata[urlpath] = reactDocs.parse(src);
+        const doc = metadata[urlpath] = reactDocs.parse(src);
+        docstringWarning(doc);
     } catch (error) {
         writeError(error, filepath);
     }
