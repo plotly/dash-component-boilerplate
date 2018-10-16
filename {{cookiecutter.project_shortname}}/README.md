@@ -61,7 +61,7 @@ If you have selected install_dependencies during the prompt, you can skip this p
 
 3. Test your tarball by copying it into a new environment and installing it locally:
     ```
-    $ pip install my_dash_component-0.0.1.tar.gz
+    $ pip install {{cookiecutter.project_shortname}}-0.0.1.tar.gz
     ```
 
 4. If it works, then you can publish the component to NPM and PyPI:
