@@ -62,7 +62,7 @@ if install_deps != 'True':
     sys.exit(0)
 
 # Create a virtual env
-if sys.version.split(' ')[0] > '3.2':
+if sys.version.split(' ')[0] > '3.2' and 'Anaconda' not in sys.version:
     venv = 'python -m venv venv'
 else:
     venv = 'virtualenv venv'
