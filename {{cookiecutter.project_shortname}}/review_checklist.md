@@ -16,6 +16,7 @@
 
 *   Don't repeat yourself. Any time you see that the same piece of logic can be applied in multiple places, factor it out into a function, or variable, and reuse that code.
 *   Scan your code for expensive operations (large computations, DOM queries, React re-renders). Have you done your possible to limit their impact? If not, it is going to slow your app down.
+*   Can you think of cases where your current code will break? How are you handling errors? Should the user see them as notifications? Should your app try to auto-correct them for them?
 
 ## Component API
 
@@ -43,4 +44,4 @@
 
 -   Take a last look at the external resources that your component is using. Are all the external resources used [referenced in `MANIFEST.in`](https://github.com/plotly/dash-docs/blob/0b2fd8f892db720a7f3dc1c404b4cff464b5f8d4/tutorial/plugins.py#L55)?
 
--   You're ready to publish! Continue to [step #9 here](README.md#publishing).
+-   [You're ready to publish!](https://github.com/plotly/dash-component-boilerplate/blob/master/%7B%7Bcookiecutter.project_shortname%7D%7D/README.md#create-a-production-build-and-publish)
