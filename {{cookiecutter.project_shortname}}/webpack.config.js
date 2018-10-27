@@ -24,9 +24,11 @@ module.exports = (env, argv) => {
         mode = 'production';
     }
 
-    const filename = (overrides.output || {}).filename || (
-        `${dashLibraryName}.${mode === 'development' ? 'dev' : 'min'}.js`
-    );
+    let filename = (overrides.output || {}).filename;
+    if(!filename) {
+        const modeSuffix = mode === 'development' ? 'dev' : 'min';
+        filename = `${dashLibraryName}.${modeSuffix}.js`;
+    }
 
     const entry = overrides.entry || {main: './src/lib/index.js'};
 
