@@ -22,7 +22,7 @@ If you have selected install_dependencies during the prompt, you can skip this p
 2. Create a virtual env and activate.
     ```
     $ virtualenv venv
-    $ venv/Scripts/activate
+    $ venv/bin/activate
     ```
     _Note: venv\Scripts\activate for windows_
 
@@ -49,7 +49,8 @@ If you have selected install_dependencies during the prompt, you can skip this p
         ```
 - Write tests for your component.
     - A sample test is available in `tests/test_usage.py`, it will load `usage.py` and you can then automate interactions with selenium.
-    - Run the tests with `$ pytest tests`.
+    - Make sure you have [ChromeDriver](http://chromedriver.chromium.org/) available on your PATH.
+    - Run the tests with `$ pytest tests --driver Chrome`.
     - The Dash team uses these types of integration tests extensively. Browse the Dash component code on GitHub for more examples of testing (e.g. https://github.com/plotly/dash-core-components)
 - Add custom styles to your component by putting your custom CSS files into your distribution folder (`{{cookiecutter.project_shortname}}`).
     - Make sure that they are referenced in `MANIFEST.in` so that they get properly included when you're ready to publish your component.
