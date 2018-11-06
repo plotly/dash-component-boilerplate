@@ -1,12 +1,11 @@
 import json
-import os
 from setuptools import setup
 
 
-with open(os.path.join('{{cookiecutter.project_shortname}}', 'package.json')) as f:
+with open('package.json') as f:
     package = json.load(f)
 
-package_name = package["name"].replace(" ", "_").replace("-", "_")
+package_name = str(package["name"].replace(" ", "_").replace("-", "_"))
 
 setup(
     name=package_name,
