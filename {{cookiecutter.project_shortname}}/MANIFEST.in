@@ -1,5 +1,5 @@
 include {{cookiecutter.project_shortname}}/{{cookiecutter.project_shortname}}.min.js
 include {{cookiecutter.project_shortname}}/{{cookiecutter.project_shortname}}.dev.js
 include {{cookiecutter.project_shortname}}/metadata.json
-include {{cookiecutter.project_shortname}}/package.json
+include package.json
 include README.md
