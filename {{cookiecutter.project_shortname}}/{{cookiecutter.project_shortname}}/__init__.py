@@ -34,8 +34,8 @@ _js_dist = [
         'relative_package_path': '{{cookiecutter.project_shortname}}.min.js',
         'dev_package_path': '{{cookiecutter.project_shortname}}.dev.js',
         {% if cookiecutter.publish_on_npm == 'True' -%}
-        'external_url': 'https://unpkg.com/{0}@{1}/{0}/{0}.min.js'.format(
-            __name__, __version__),
+        'external_url': 'https://unpkg.com/{0}@{2}/{1}/{1}.min.js'.format(
+            package_name, __name__, __version__),
         {%- endif %}
         'namespace': package_name
     }
