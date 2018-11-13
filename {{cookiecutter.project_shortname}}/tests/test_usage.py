@@ -13,10 +13,15 @@ def test_render_component(dash_app, selenium):
     # The html input will be a children of the #input dash component
     my_component = selenium.find_element_by_css_selector('#input > input')
 
+    assert 'my-value' == my_component.get_attribute('value')
+
+    # Clear the input
+    my_component.clear()
+
     # Send keys to the custom input.
     my_component.send_keys('Hello dash')
 
-    # Sleep for the output callback to complete.
+    # Wait for the output callback to complete.
     time.sleep(1)
 
     # Get the output component.
@@ -24,4 +29,3 @@ def test_render_component(dash_app, selenium):
 
     # assert the text has changed
     assert output.text == 'You have entered Hello dash'
-
