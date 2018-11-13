@@ -70,7 +70,20 @@ _execute_command('npm install --ignore-scripts')
 
 # Run the first build
 print('Building initial bundles...')
-_execute_command('npm run build:all')
+
+# Activating the venv and running the command
+# doesn't work on linux with subprocess.
+# The command need to run in the venv we just created to use the dash cmd.
+# But it also needs shell to be true for the command to work.
+# And shell doesn't work with `npm run` nor `. venv/bin/activate`
+# The command works in a terminal.
+_execute_command('{} -m dash.development.component_generator'
+                 ' ./src/lib/components'
+                 ' {{cookiecutter.project_shortname}}'
+                 .format(python_executable))
+
+_execute_command('npm run build:js')
+_execute_command('npm run build:js-dev')
 
 print('\n{} ready!\n'.format(project_shortname))
 
