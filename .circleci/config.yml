@@ -47,6 +47,54 @@ jobs:
         docker:
             - image: circleci/python:2.7-stretch-node-browsers
 
+    "python-3.7-install-test":
+        docker:
+            - image: circleci/python:3.7-stretch-node-browsers
+
+        environment:
+            PERCY_ENABLE: 0
+
+        steps:
+            - checkout
+
+            - run:
+                name: Write job name.
+                command: echo $CIRCLE_JOB > circlejob.txt
+
+            - restore_cache:
+                key: deps1-{{ .Branch }}-{{ checksum "circlejob.txt" }}-{{ checksum "tests/requirements.txt" }}-{{ checksum ".circleci/config.yml" }}
+
+            - run:
+                name: Create virtualenv
+                command: |
+                    sudo pip install virtualenv
+                    python -m venv venv || virtualenv venv
+
+            - run:
+                name: Install requirements
+                command: |
+                    . venv/bin/activate
+                    pip install -r tests/requirements.txt --quiet
+
+            - save_cache:
+                key: deps1-{{ .Branch }}-{{ checksum "circlejob.txt" }}-{{ checksum "tests/requirements.txt" }}-{{ checksum ".circleci/config.yml" }}
+                paths:
+                    - "venv"
+
+            - run:
+                name: Generate Project & test
+                command: |
+                    . venv/bin/activate
+                    mkdir test_component
+                    cd test_component
+                    cookiecutter .. --config-file ../tests/test_config.yaml --no-input
+                    cd test_component
+                    python -m venv venv
+                    pip install -r tests/requirements.txt
+                    npm install --ignore-scripts
+                    npm run build:all
+                    pytest tests/test_usage.py --driver Chrome
+
 
 workflows:
     version: 2
@@ -54,3 +102,4 @@ workflows:
         jobs:
             - "python-3.6"
             - "python-2.7"
+            - "python-3.7-install-test"
