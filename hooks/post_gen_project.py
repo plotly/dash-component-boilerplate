@@ -4,8 +4,6 @@ import shlex
 import sys
 import os
 import subprocess
-import json
-import collections
 
 install_deps = '{{cookiecutter.install_dependencies}}'
 project_shortname = '{{cookiecutter.project_shortname}}'
@@ -33,25 +31,6 @@ def _execute_command(cmd):
         sys.exit(status)
 
     return status
-
-
-# Patch up the package.json to use the venv python for class generation.
-# If install_dependencies is false, the venv must be created manually and
-# the requirements installed.
-print('Patching build command')
-
-with open('package.json', 'r+') as package_file:
-    package_json = json.load(package_file,
-                             object_pairs_hook=collections.OrderedDict)
-
-    package_json['scripts']['build:py'] \
-        = package_json['scripts']['build:py'].replace(
-        '%(python_path)', python_executable)
-
-    package_file.seek(0)
-    package_file.truncate(0)
-
-    json.dump(package_json, package_file, indent=4)
 
 
 if install_deps != 'True':
