@@ -1,4 +1,4 @@
-dash
+dash==0.31.0rc2
 dash-html-components
 dash-core-components
 pytest
