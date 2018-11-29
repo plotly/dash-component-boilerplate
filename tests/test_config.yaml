@@ -1,0 +1,9 @@
+default_context:
+  project_name: Test Component
+  project_shortname: test_component
+  component_name: TestComponent
+  author_name: Test
+  author_email: Test
+  license: MIT License
+  publish_on_npm: false
+  install_dependencies: false
