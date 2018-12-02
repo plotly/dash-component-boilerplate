@@ -4,4 +4,4 @@ dash-core-components
 pytest
 pytest-cookies
 pytest-selenium
-pytest-dash
+pytest-dash==0.2.0rc3
