@@ -2,8 +2,10 @@ import shutil
 import time
 import sys
 
+from pytest_dash.utils import import_app
 
-def test_install(cookies, dash_app, selenium):
+
+def test_install(cookies, dash_threaded, selenium):
     results = cookies.bake(extra_context={
         'project_name': 'Test Component',
         'author_name': 'test',
@@ -15,7 +17,7 @@ def test_install(cookies, dash_app, selenium):
     sys.path.insert(0, str(results.project))
 
     # Test that `usage.py` works after building the default component.
-    dash_app(str(results.project.join('usage.py')))
+    dash_threaded(import_app(str(results.project.join('usage.py'))))
 
     time.sleep(1)
 

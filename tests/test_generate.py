@@ -1,6 +1,4 @@
 import json
-import os
-import sys
 
 
 default_context = {
