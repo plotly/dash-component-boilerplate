@@ -1,13 +1,16 @@
 import time
 
+from pytest_dash.utils import import_app
+
 
 # Basic test for the component rendering.
-def test_render_component(dash_subprocess, selenium):
+def test_render_component(dash_threaded, selenium):
     # Start a dash app contained in `usage.py`
-    # dash_app is a fixture by pytest-dash
+    # dash_threaded is a fixture by pytest-dash
     # It will load a py file containing a Dash instance named `app`
     # and start it in a thread.
-    dash_subprocess('usage')
+    app = import_app('usage.py')
+    dash_threaded(app)
 
     # Get the generated component input with selenium
     # The html input will be a children of the #input dash component
