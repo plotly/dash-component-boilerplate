@@ -2,7 +2,11 @@ import shutil
 import time
 import sys
 
-from pytest_dash.utils import import_app
+from pytest_dash.utils import (
+    import_app,
+    wait_for_text_to_equal,
+    wait_for_element_by_css_selector
+)
 
 
 def test_install(cookies, dash_threaded, selenium):
@@ -21,16 +25,18 @@ def test_install(cookies, dash_threaded, selenium):
 
     time.sleep(1)
 
-    input_component = selenium.find_element_by_xpath(
-        '//div[@id="input"]/input')
+    input_component = wait_for_element_by_css_selector(
+        selenium,
+        '#input > input'
+    )
     input_component.clear()
     input_component.send_keys('Hello dash component')
 
-    time.sleep(2)
-
-    output = selenium.find_element_by_id('output')
-
-    assert output.text == 'You have entered Hello dash component'
+    wait_for_text_to_equal(
+        selenium,
+        '#output',
+        'You have entered Hello dash component'
+    )
 
     node_modules = str(results.project.join('node_modules'))
 
