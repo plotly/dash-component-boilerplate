@@ -1,6 +1,6 @@
 import shutil
-import time
 import sys
+
 
 from pytest_dash.utils import (
     import_app,
@@ -21,9 +21,7 @@ def test_install(cookies, dash_threaded, selenium):
     sys.path.insert(0, str(results.project))
 
     # Test that `usage.py` works after building the default component.
-    dash_threaded(import_app(str(results.project.join('usage.py'))))
-
-    time.sleep(1)
+    dash_threaded(import_app('usage'))
 
     input_component = wait_for_element_by_css_selector(
         selenium,

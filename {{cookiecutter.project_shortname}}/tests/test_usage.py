@@ -11,7 +11,7 @@ def test_render_component(dash_threaded, selenium):
     # dash_threaded is a fixture by pytest-dash
     # It will load a py file containing a Dash instance named `app`
     # and start it in a thread.
-    app = import_app('usage.py')
+    app = import_app('usage')
     dash_threaded(app)
 
     # Get the generated component input with selenium
