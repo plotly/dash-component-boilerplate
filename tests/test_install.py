@@ -1,9 +1,15 @@
 import shutil
-import time
 import sys
 
 
-def test_install(cookies, dash_app, selenium):
+from pytest_dash.utils import (
+    import_app,
+    wait_for_text_to_equal,
+    wait_for_element_by_css_selector
+)
+
+
+def test_install(cookies, dash_threaded, selenium):
     results = cookies.bake(extra_context={
         'project_name': 'Test Component',
         'author_name': 'test',
@@ -15,20 +21,20 @@ def test_install(cookies, dash_app, selenium):
     sys.path.insert(0, str(results.project))
 
     # Test that `usage.py` works after building the default component.
-    dash_app(str(results.project.join('usage.py')))
+    dash_threaded(import_app('usage'))
 
-    time.sleep(1)
-
-    input_component = selenium.find_element_by_xpath(
-        '//div[@id="input"]/input')
+    input_component = wait_for_element_by_css_selector(
+        selenium,
+        '#input > input'
+    )
     input_component.clear()
     input_component.send_keys('Hello dash component')
 
-    time.sleep(2)
-
-    output = selenium.find_element_by_id('output')
-
-    assert output.text == 'You have entered Hello dash component'
+    wait_for_text_to_equal(
+        selenium,
+        '#output',
+        'You have entered Hello dash component'
+    )
 
     node_modules = str(results.project.join('node_modules'))
 

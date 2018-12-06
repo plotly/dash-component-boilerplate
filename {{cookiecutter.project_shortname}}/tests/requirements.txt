@@ -12,4 +12,4 @@ percy
 selenium
 flake8
 pylint
-pytest-dash
+pytest-dash>=1.0.1
