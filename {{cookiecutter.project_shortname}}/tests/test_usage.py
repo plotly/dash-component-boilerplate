@@ -26,6 +26,6 @@ def test_render_component(dash_threaded, selenium):
     # Send keys to the custom input.
     my_component.send_keys('Hello dash')
 
-    # Wait for the text to equal, if after 10 second (default) the is not
-    # equal it will fail the test.
+    # Wait for the text to equal, if after the timeout (default 10 seconds)
+    # the text is not equal it will fail the test.
     wait_for_text_to_equal(selenium, '#output', 'You have entered Hello dash')
