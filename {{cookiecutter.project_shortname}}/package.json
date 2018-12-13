@@ -9,8 +9,10 @@
     "prepublish": "npm run validate-init",
     "build:js-dev": "webpack --mode development",
     "build:js": "webpack --mode production",
-    "build:py": "(. venv/bin/activate || venv\\scripts\\activate && dash-generate-components ./src/lib/components {{ cookiecutter.project_shortname }})",
-    "build:all": "npm run build:js && npm run build:js-dev && npm run build:py"
+    "build:py": "dash-generate-components ./src/lib/components {{ cookiecutter.project_shortname }}",
+    "build:py-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py)",
+    "build:all": "npm run build:js && npm run build:js-dev && npm run build:py",
+    "build:all-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:all)"
   },
   "author": "{{ cookiecutter.author_name }} {{ cookiecutter.author_email }}",
   "license": "{% set _license_identifiers = {'MIT License': 'MIT','BSD License': 'BSD','ISC License': 'ISC','Apache Software License 2.0': 'Apache-2.0','GNU General Public License v3': 'GPL-3.0','Not open source': ''} %}{{ _license_identifiers[cookiecutter.license] }}",
