@@ -41,5 +41,5 @@ to generate the components in the `build:py` script of the generated
 - Watch the [component boilerplate repository](https://github.com/plotly/dash-component-boilerplate) to stay informed of changes to our components.
 - [React guide for python developers](https://dash.plot.ly/react-for-python-developers)
 - Need help with your component? View the Dash Community Forum: https://community.plot.ly/c/dash
-- Examples of Dash component libraries include `dash-core-components`: https://github.com/plotly/dash-core-components` and `dash-html-components`: https://github.com/plotly/dash-html-components.
+- Examples of Dash component libraries include `dash-core-components`: https://github.com/plotly/dash-core-components and `dash-html-components`: https://github.com/plotly/dash-html-components.
 - To get a feel for what's involved in creating a component, read through the [README.MD file that this cookiecutter project generates](/cookie-cutter/%7B%7Bcookiecutter.project_shortname%7D%7D/README.md)
