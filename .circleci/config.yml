@@ -94,7 +94,7 @@ jobs:
                     pip install -r tests/requirements.txt --quiet
                     npm install --ignore-scripts
                     npm run build:all
-                    pytest tests/test_usage.py --webdriver Chrome
+                    pytest tests/test_usage.py
 
 
 workflows:
