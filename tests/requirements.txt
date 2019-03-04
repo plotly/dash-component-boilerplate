@@ -1,7 +1,4 @@
-dash>=0.31.0
-dash-html-components
-dash-core-components
+dash==0.38.0
 pytest
 pytest-cookies
-pytest-selenium
-pytest-dash>=1.0.1
+pytest-dash==2.1.1

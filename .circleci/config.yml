@@ -39,7 +39,7 @@ jobs:
                 name: Generations tests
                 command: |
                     . venv/bin/activate
-                    pytest tests --driver Chrome
+                    pytest
                 when: always
 
     "python-2.7":
@@ -94,7 +94,7 @@ jobs:
                     pip install -r tests/requirements.txt --quiet
                     npm install --ignore-scripts
                     npm run build:all
-                    pytest tests/test_usage.py --driver Chrome
+                    pytest tests/test_usage.py
 
 
 workflows:

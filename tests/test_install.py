@@ -2,14 +2,15 @@ import shutil
 import sys
 
 
-from pytest_dash.utils import (
-    import_app,
+from pytest_dash.wait_for import (
     wait_for_text_to_equal,
     wait_for_element_by_css_selector
 )
 
+from pytest_dash.application_runners import import_app
 
-def test_install(cookies, dash_threaded, selenium):
+
+def test_install(cookies, dash_threaded):
     results = cookies.bake(extra_context={
         'project_name': 'Test Component',
         'author_name': 'test',
@@ -20,6 +21,7 @@ def test_install(cookies, dash_threaded, selenium):
     # It lies somewhere in a temp directory created by pytest-cookies
     sys.path.insert(0, str(results.project))
 
+    selenium = dash_threaded.driver
     # Test that `usage.py` works after building the default component.
     dash_threaded(import_app('usage'))
 
@@ -44,4 +46,3 @@ def test_install(cookies, dash_threaded, selenium):
         node_modules = '\\\\?\\' + node_modules
 
     shutil.rmtree(node_modules)
-
