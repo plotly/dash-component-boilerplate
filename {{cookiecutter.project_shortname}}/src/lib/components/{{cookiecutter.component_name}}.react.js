@@ -57,5 +57,5 @@ export default class {{cookiecutter.component_name}} extends Component {
      * Dash-assigned callback that should be called whenever any of the
      * properties change
      */
-    setProps: PropTypes.func.isRequired
+    setProps: PropTypes.func
 };
