@@ -17,28 +17,18 @@ export default class {{cookiecutter.component_name}} extends Component {
                 ExampleComponent: {label}&nbsp;
                 <input
                     value={value}
-                    onChange={e => {
+                    onChange={
                         /*
                          * Send the new value to the parent component.
-                         # setProps is a prop that is automatically supplied
+                         * setProps is a prop that is automatically supplied
                          * by dash's front-end ("dash-renderer").
-                         * In a Dash app, this will send the data back to the
-                         * Python Dash app server.
-                         * If the component properties are not "subscribed"
-                         * to by a Dash callback, then Dash dash-renderer
-                         * will not pass through `setProps` and it is expected
-                         * that the component manages its own state.
+                         * In a Dash app, this will update the component's
+                         * props and send the data back to the Python Dash
+                         * app server if a callback uses the modified prop as
+                         * Input or State.
                          */
-                         if (setProps) {
-                             setProps({
-                                value: e.target.value
-                            });
-                        } else {
-                            this.setState({
-                                value: e.target.value
-                            })
-                        }
-                    }}
+                        e => setProps({ value: e.target.value })
+                    }
                 />
             </div>
         );
