@@ -1,0 +1,14 @@
+Package: {{ cookiecutter.r_package_name }}
+Title: {{ cookiecutter.r_project_title }}
+Version: {{ cookiecutter.r_package_version }}
+Maintainer: {{ cookiecutter.full_name}} <{{ cookiecutter.author_email }}>
+Description: {{ cookiecutter.r_package_description }}
+Authors @R: as.personi(c({{ cookiecutter.author_name }}))
+Depends: {{ cookiecutter.r_package_depends }}
+Imports: {{ cookiecutter.r_package_imports }}
+Suggests: {{ cookiecutter.r_package_suggests }}
+License: {{ cookiecutter.license }}
+Encoding: {{ cookiecutter.r_package_encoding }}
+LazyData: {{ cookiecutter.r_package_lazydata }} 
+URL: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_shortname }}
+BugReports: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_shortname }}/issues

@@ -1,0 +1,10 @@
+# List the R functions to be exported here
+# To export one function called "somefunction", use
+#    export(somefunction)
+#
+# To export all functions which don't start with a dot, use
+#    exportPattern("^[^\\.]")
+#
+# It's generally preferable to export functions as needed, however.
+#    https://cran.r-project.org/doc/manuals/r-release/R-exts.html
+#    http://r-pkgs.had.co.nz/namespace.html

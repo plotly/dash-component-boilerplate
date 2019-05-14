@@ -10,8 +10,9 @@
     "build:js-dev": "webpack --mode development",
     "build:js": "webpack --mode production",
     "build:py": "dash-generate-components ./src/lib/components {{ cookiecutter.project_shortname }}",
+    "build:r": "dash-generate-components ./src/lib/components {{ cookiecutter.project_shortname }} --r-prefix '{{ cookiecutter.r_package_prefix }}'",
     "build:py-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py)",
-    "build:all": "npm run build:js && npm run build:js-dev && npm run build:py",
+    "build:all": "npm run build:js && npm run build:js-dev && npm run build:py && npm run build:r",
     "build:all-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:all)"
   },
   "author": "{{ cookiecutter.author_name }} {{ cookiecutter.author_email }}",
