@@ -54,8 +54,8 @@ export default class {{cookiecutter.component_name}} extends Component {
     value: PropTypes.string,
 
     /**
-     * Dash-assigned callback that should be called to exchange information
-     * related to property changes.
+     * Dash-assigned callback that should be called to report property changes
+     * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
