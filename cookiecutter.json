@@ -1,9 +1,9 @@
 {
   "project_name": "my dash component",
-  "project_shortname": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
-  "component_name": "{{ cookiecutter.project_name.replace(' ', '').replace('-', '') }}",
+  "project_shortname": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_') }}",
+  "component_name": "{{ cookiecutter.project_shortname.split('_')|map('capitalize')|join('') }}",
   "r_prefix": "",
-  "author_name": "Enter your name (For package.json)",
+  "author_name": "Enter your first and last name (For package.json)",
   "author_email": "Enter your email (For package.json)",
   "github_org": "",
   "description": "Project Description",
