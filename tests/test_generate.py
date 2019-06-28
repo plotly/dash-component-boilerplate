@@ -16,6 +16,5 @@ def test_package_json(cookies):
 
     assert package_json['name'] == 'test_component'
     assert package_json['license'] == 'MIT'
-    assert package_json['author'] == \
-        '{} {}'.format(default_context['author_name'],
-                       default_context['author_email'])
+    author = '{author_name} <{author_email}>'.format(**default_context)
+    assert package_json['author'] == author

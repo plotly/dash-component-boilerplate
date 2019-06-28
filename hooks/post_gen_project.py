@@ -72,6 +72,8 @@ _execute_command('npm install --ignore-scripts')
 # Run the first build
 print('Building initial bundles...')
 
+_execute_command('npm run build:js')
+
 # Activating the venv and running the command
 # doesn't work on linux with subprocess.
 # The command need to run in the venv we just created to use the dash cmd.
@@ -84,8 +86,6 @@ _execute_command("{} -m dash.development.component_generator"
                  " -p package-info.json"
                  " --r-prefix '{{ cookiecutter.r_prefix }}'"
                  .format(python_executable))
-
-_execute_command('npm run build:js')
 
 print('\n{} ready!\n'.format(project_shortname))
 
