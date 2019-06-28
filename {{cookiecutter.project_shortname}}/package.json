@@ -2,43 +2,55 @@
   "name": "{{ cookiecutter.project_shortname }}",
   "version": "0.0.1",
   "description": "{{ cookiecutter.description }}",
+{% if cookiecutter.github_org -%}
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.project_shortname.replace('_', '-') }}.git"
+  },
+  "bugs": {
+    "url": "https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.project_shortname.replace('_', '-') }}/issues"
+  },
+  "homepage": "https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.project_shortname.replace('_', '-') }}",
+{%- endif %}
   "main": "build/index.js",
   "scripts": {
     "start": "webpack-serve ./webpack.serve.config.js --open",
     "validate-init": "python _validate_init.py",
     "prepublish": "npm run validate-init",
-    "build:js-dev": "webpack --mode development",
     "build:js": "webpack --mode production",
-    "build:py": "dash-generate-components ./src/lib/components {{ cookiecutter.project_shortname }}",
-    "build:py-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py)",
-    "build:all": "npm run build:js && npm run build:js-dev && npm run build:py",
-    "build:all-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:all)"
+    "build:py_and_r": "dash-generate-components ./src/lib/components {{ cookiecutter.project_shortname }} -p package-info.json --r-prefix '{{ cookiecutter.r_prefix }}'",
+    "build:py_and_r-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py_and_r)",
+    "build": "npm run build:js && npm run build:py_and_r",
+    "build:activated": "npm run build:js && npm run build:py_and_r-activated"
   },
   "author": "{{ cookiecutter.author_name }} {{ cookiecutter.author_email }}",
   "license": "{% set _license_identifiers = {'MIT License': 'MIT','BSD License': 'BSD','ISC License': 'ISC','Apache Software License 2.0': 'Apache-2.0','GNU General Public License v3': 'GPL-3.0','Not open source': ''} %}{{ _license_identifiers[cookiecutter.license] }}",
   "dependencies": {
-    "ramda": "^0.25.0"
+    "ramda": "^0.26.1"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.3",
-    "babel-loader": "^7.1.4",
-    "copyfiles": "^2.0.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "css-loader": "^0.28.11",
-    "eslint": "^4.19.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-react": "^7.9.1",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "copyfiles": "^2.1.0",
+    "css-loader": "^3.0.0",
+    "eslint": "^5.15.3",
+    "eslint-config-prettier": "^3.6.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-react": "^7.12.4",
     "npm": "^6.1.0",
-    "react-docgen": "^2.20.1",
-    "style-loader": "^0.21.0",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.1",
-    "webpack-serve": "^1.0.2",
-    "react": ">=0.14",
-    "react-dom": ">=0.14"
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-docgen": "^4.1.1",
+    "react-dom": "^16.8.6",
+    "styled-jsx": "^3.1.1",
+    "style-loader": "^0.23.1",
+    "webpack": "4.34.0",
+    "webpack-cli": "3.3.4",
+    "webpack-serve": "3.1.0"
   },
   "engines": {
     "node": ">=8.11.0",

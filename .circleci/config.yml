@@ -85,15 +85,15 @@ jobs:
                 name: Generate Project & test
                 command: |
                     . venv/bin/activate
-                    mkdir test_component
-                    cd test_component
+                    mkdir test_install
+                    cd test_install
                     cookiecutter .. --config-file ../tests/test_config.yaml --no-input
                     cd test_component
                     python -m venv venv
                     . venv/bin/activate
                     pip install -r tests/requirements.txt --quiet
                     npm install --ignore-scripts
-                    npm run build:all
+                    npm run build
                     pytest tests/test_usage.py
 
 

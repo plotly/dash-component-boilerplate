@@ -5,9 +5,6 @@ import dash_html_components as html
 
 app = dash.Dash(__name__)
 
-app.scripts.config.serve_locally = True
-app.css.config.serve_locally = True
-
 app.layout = html.Div([
     {{cookiecutter.project_shortname}}.{{cookiecutter.component_name}}(
         id='input',
@@ -16,6 +13,7 @@ app.layout = html.Div([
     ),
     html.Div(id='output')
 ])
+
 
 @app.callback(Output('output', 'children'), [Input('input', 'value')])
 def display_output(value):

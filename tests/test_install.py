@@ -1,16 +1,10 @@
 import shutil
 import sys
 
-
-from pytest_dash.wait_for import (
-    wait_for_text_to_equal,
-    wait_for_element_by_css_selector
-)
-
-from pytest_dash.application_runners import import_app
+from dash.testing.application_runners import import_app
 
 
-def test_install(cookies, dash_threaded):
+def test_install(cookies, dash_duo):
     results = cookies.bake(extra_context={
         'project_name': 'Test Component',
         'author_name': 'test',
@@ -21,22 +15,16 @@ def test_install(cookies, dash_threaded):
     # It lies somewhere in a temp directory created by pytest-cookies
     sys.path.insert(0, str(results.project))
 
-    selenium = dash_threaded.driver
     # Test that `usage.py` works after building the default component.
-    dash_threaded(import_app('usage'))
+    app = import_app('usage')
+    dash_duo.start_server(app)
 
-    input_component = wait_for_element_by_css_selector(
-        selenium,
-        '#input > input'
-    )
-    input_component.clear()
-    input_component.send_keys('Hello dash component')
+    my_component = dash_duo.find_element('#input > input')
+    assert 'my-value' == my_component.get_attribute('value')
 
-    wait_for_text_to_equal(
-        selenium,
-        '#output',
-        'You have entered Hello dash component'
-    )
+    dash_duo.clear_input(my_component)
+    my_component.send_keys('Hello dash')
+    dash_duo.wait_for_text_to_equal('#output', 'You have entered Hello dash')
 
     node_modules = str(results.project.join('node_modules'))
 

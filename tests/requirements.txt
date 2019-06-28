@@ -1,4 +1,4 @@
-dash==0.38.0
+# dash>=1.0.0
+-e git://github.com/plotly/dash.git@boilerplate-1.0#egg=dash
 pytest
 pytest-cookies
-pytest-dash==2.1.1

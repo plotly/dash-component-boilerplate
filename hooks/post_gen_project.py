@@ -63,7 +63,8 @@ print('\n\nInstalling dependencies\n', file=sys.stderr)
 
 # Install python requirements.
 _execute_command(
-   r'{} -m pip install -r requirements.txt'.format(python_executable))
+    r'{} -m pip install -r requirements.txt'.format(python_executable)
+)
 
 # Install node_modules
 _execute_command('npm install --ignore-scripts')
@@ -77,13 +78,14 @@ print('Building initial bundles...')
 # But it also needs shell to be true for the command to work.
 # And shell doesn't work with `npm run` nor `. venv/bin/activate`
 # The command works in a terminal.
-_execute_command('{} -m dash.development.component_generator'
-                 ' ./src/lib/components'
-                 ' {{cookiecutter.project_shortname}}'
+_execute_command("{} -m dash.development.component_generator"
+                 " ./src/lib/components"
+                 " {{cookiecutter.project_shortname}}"
+                 " -p package-info.json"
+                 " --r-prefix '{{ cookiecutter.r_prefix }}'"
                  .format(python_executable))
 
 _execute_command('npm run build:js')
-_execute_command('npm run build:js-dev')
 
 print('\n{} ready!\n'.format(project_shortname))
 

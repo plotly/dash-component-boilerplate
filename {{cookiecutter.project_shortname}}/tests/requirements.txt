@@ -3,10 +3,10 @@
 # pip install -r requirements.txt
 
 chromedriver-binary
-dash>=0.38.0
+# dash>=1.0.0
+-e git://github.com/plotly/dash.git@boilerplate-1.0#egg=dash
 ipdb
 percy
 selenium
 flake8
 pylint
-pytest-dash>=2.1.1
