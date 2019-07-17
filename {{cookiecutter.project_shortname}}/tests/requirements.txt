@@ -3,8 +3,7 @@
 # pip install -r requirements.txt
 
 chromedriver-binary
-# dash>=1.0.0
--e git://github.com/plotly/dash.git@boilerplate-1.0#egg=dash
+dash>=1.0.2
 ipdb
 percy
 selenium
