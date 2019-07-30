@@ -5,7 +5,5 @@
 chromedriver-binary
 dash[testing]>=1.0.2
 ipdb
-percy
-selenium
 flake8
 pylint
