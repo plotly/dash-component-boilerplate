@@ -2,8 +2,4 @@
 # Switch into a virtual environment
 # pip install -r requirements.txt
 
-chromedriver-binary
 dash[testing]>=1.0.2
-ipdb
-flake8
-pylint
