@@ -1,4 +1,2 @@
-dash==0.38.0
-pytest
+dash[testing]>=1.0.2
 pytest-cookies
-pytest-dash==2.1.1

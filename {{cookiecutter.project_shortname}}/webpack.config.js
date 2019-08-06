@@ -32,14 +32,13 @@ module.exports = (env, argv) => {
 
     const entry = overrides.entry || {main: './src/lib/index.js'};
 
-    const devtool = overrides.devtool || (
-        mode === 'development' ? "eval-source-map" : 'none'
-    );
+    const devtool = overrides.devtool || 'source-map';
 
     const externals = ('externals' in overrides) ? overrides.externals : ({
         react: 'React',
         'react-dom': 'ReactDOM',
         'plotly.js': 'Plotly',
+        'prop-types': 'PropTypes',
     });
 
     return {
@@ -51,11 +50,12 @@ module.exports = (env, argv) => {
             library: dashLibraryName,
             libraryTarget: 'window',
         },
+        devtool,
         externals,
         module: {
             rules: [
                 {
-                    test: /\.js$/,
+                    test: /\.jsx?$/,
                     exclude: /node_modules/,
                     use: {
                         loader: 'babel-loader',
@@ -66,6 +66,9 @@ module.exports = (env, argv) => {
                     use: [
                         {
                             loader: 'style-loader',
+                            options: {
+                                insertAt: 'top'
+                            }
                         },
                         {
                             loader: 'css-loader',
@@ -74,6 +77,5 @@ module.exports = (env, argv) => {
                 },
             ],
         },
-        devtool
     }
 };
