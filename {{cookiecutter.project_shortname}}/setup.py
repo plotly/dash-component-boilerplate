@@ -3,7 +3,7 @@ import os
 from setuptools import setup
 
 
-with open(os.path.join('{{cookiecutter.project_shortname}}', 'package.json')) as f:
+with open(os.path.join('{{cookiecutter.project_shortname}}', 'package-info.json')) as f:
     package = json.load(f)
 
 package_name = package["name"].replace(" ", "_").replace("-", "_")
