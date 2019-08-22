@@ -39,7 +39,7 @@ export default class {{cookiecutter.component_name}} extends Component {
 
 {{cookiecutter.component_name}}.propTypes = {
     /**
-     * The ID used to identify this component in Dash callbacks
+     * The ID used to identify this component in Dash callbacks.
      */
     id: PropTypes.string,
 
@@ -49,13 +49,13 @@ export default class {{cookiecutter.component_name}} extends Component {
     label: PropTypes.string.isRequired,
 
     /**
-     * The value displayed in the input
+     * The value displayed in the input.
      */
     value: PropTypes.string,
 
     /**
-     * Dash-assigned callback that should be called whenever any of the
-     * properties change
+     * Dash-assigned callback that should be called to report property changes
+     * to Dash, to make them available for callbacks.
      */
     setProps: PropTypes.func
 };
