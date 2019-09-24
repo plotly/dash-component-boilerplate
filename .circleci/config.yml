@@ -91,7 +91,7 @@ jobs:
                     cd test_component
                     python -m venv venv
                     . venv/bin/activate
-                    pip install -r tests/requirements.txt --quiet
+                    pip install -r tests/requirements.txt
                     npm install --ignore-scripts
                     npm run build
                     pytest
