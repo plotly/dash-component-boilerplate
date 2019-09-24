@@ -16,7 +16,7 @@
   "scripts": {
     "start": "webpack-serve --config ./webpack.serve.config.js --open",
     "validate-init": "python _validate_init.py",
-    "prepublish": "npm run validate-init",
+    "prepublishOnly": "npm run validate-init",
     "build:js": "webpack --mode production",
     "build:py_and_r": "dash-generate-components ./src/lib/components {{ cookiecutter.project_shortname }} -p package-info.json --r-prefix '{{ cookiecutter.r_prefix }}'",
     "build:py_and_r-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py_and_r)",
