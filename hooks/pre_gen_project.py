@@ -7,7 +7,7 @@ project_shortname = '{{cookiecutter.project_shortname}}'
 
 invalid_package_message = 'Invalid {variable}: {value}'
 project_shortname_message = '''
-({variable}={value}) should be a valid python package name.
+({variable}={value}) should be a valid Python package name.
 
 Only lowercase letters and `_` are allowed.
 '''

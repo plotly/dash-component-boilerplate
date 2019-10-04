@@ -53,7 +53,7 @@ except BaseException:
     print(
         '''
         venv creation failed.
-        Make sure you have installed virtualenv on python 2.
+        Make sure you have installed virtualenv on Python 2.
         ''',
         file=sys.stderr
     )
@@ -75,7 +75,7 @@ print('Building initial bundles...')
 _execute_command('npm run build:js')
 
 # Activating the venv and running the command
-# doesn't work on linux with subprocess.
+# doesn't work on Linux with subprocess.
 # The command need to run in the venv we just created to use the dash cmd.
 # But it also needs shell to be true for the command to work.
 # And shell doesn't work with `npm run` nor `. venv/bin/activate`
