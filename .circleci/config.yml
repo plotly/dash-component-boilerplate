@@ -12,20 +12,20 @@ jobs:
             - checkout
 
             - run:
-                name: Write job name.
+                name: ✍️ Write job name.
                 command: echo $CIRCLE_JOB > circlejob.txt
 
             - restore_cache:
                 key: deps1-{{ .Branch }}-{{ checksum "circlejob.txt" }}-{{ checksum "tests/requirements.txt" }}-{{ checksum ".circleci/config.yml" }}
 
             - run:
-                name: Create virtualenv
+                name: 🏗️ Create virtualenv
                 command: |
                     sudo pip install virtualenv
                     python -m venv venv || virtualenv venv
 
             - run:
-                name: Install requirements
+                name: 🏗️ Install requirements
                 command: |
                     . venv/bin/activate
                     pip install -r tests/requirements.txt --quiet
@@ -36,7 +36,7 @@ jobs:
                     - venv
 
             - run:
-                name: Generations tests
+                name: 🧪 Generations tests
                 command: |
                     . venv/bin/activate
                     pytest
@@ -58,20 +58,20 @@ jobs:
             - checkout
 
             - run:
-                name: Write job name.
+                name: ✍️ Write job name.
                 command: echo $CIRCLE_JOB > circlejob.txt
 
             - restore_cache:
                 key: deps1-{{ .Branch }}-{{ checksum "circlejob.txt" }}-{{ checksum "tests/requirements.txt" }}-{{ checksum ".circleci/config.yml" }}
 
             - run:
-                name: Create virtualenv
+                name: 🏗️ Create virtualenv
                 command: |
                     sudo pip install virtualenv
                     python -m venv venv || virtualenv venv
 
             - run:
-                name: Install requirements
+                name: 🏗️ Install requirements
                 command: |
                     . venv/bin/activate
                     pip install -r tests/requirements.txt --quiet
@@ -82,7 +82,7 @@ jobs:
                     - venv
 
             - run:
-                name: Generate Project & test
+                name: 🧪 Generate Project & test
                 command: |
                     . venv/bin/activate
                     mkdir test_install

@@ -61,7 +61,7 @@ except BaseException:
 
 print('\n\nInstalling dependencies\n', file=sys.stderr)
 
-# Install python requirements.
+# Install Python requirements.
 _execute_command(
     r'{} -m pip install -r requirements.txt'.format(python_executable)
 )
@@ -76,7 +76,7 @@ _execute_command('npm run build:js')
 
 # Activating the venv and running the command
 # doesn't work on Linux with subprocess.
-# The command need to run in the venv we just created to use the dash cmd.
+# The command needs to run in the venv we just created to use the dash cmd.
 # But it also needs shell to be true for the command to work.
 # And shell doesn't work with `npm run` nor `. venv/bin/activate`
 # The command works in a terminal.
