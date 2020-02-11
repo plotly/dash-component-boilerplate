@@ -44,7 +44,7 @@ _js_dist = [
         'external_url': 'https://unpkg.com/{0}@{2}/{1}/{1}.min.js.map'.format(
             package_name, __name__, __version__),
 {%- endif %}
-        'namespace': package_name
+        'namespace': package_name,
         'dynamic': True
     }
 ]
