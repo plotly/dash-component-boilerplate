@@ -20,6 +20,7 @@ To use this boilerplate:
     - `project_name`: This is the "human-readable" name of your project. For example, "Dash Core Components".
     - `project_shortname`: is derived from the project name, it is the name of the "Python library" for your project. By default, this is generated from your `project_name` by lowercasing the name and replacing spaces & `-` with underscores. For example, for "Dash Core Components" this would be "dash_core_components".
     - `component_name`: This is the name of the initial component that is generated. As a JavaScript class name it should be in PascalCase. defaults to the PascalCase version of `project_shortname`.
+    - `jl_prefix`: Optional prefix for Julia components. For example, `dash_core_components` uses "dcc" so the Python `dcc.Input` becomes `dccInput` in Julia, and `dash_table` uses "dash" to make `dashDataTable`.
     - `r_prefix`: Optional prefix for R components. For example, `dash_core_components` uses "dcc" so the Python `dcc.Input` becomes `dccInput` in R, and `dash_table` uses "dash" to make `dashDataTable`.
     - `author_name` and `author_email`: for package.json and DESCRIPTION (for R) metadata.
     - `github_org`: If you plan to push this to GitHub, enter the organization or username that will own it (for URLs to the project homepage and bug report page)
