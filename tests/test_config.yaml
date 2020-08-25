@@ -2,6 +2,7 @@ default_context:
   project_name: Test Component
   project_shortname: test_component
   component_name: TestComponent
+  jl_prefix: dash
   r_prefix: dash
   author_name: Test
   author_email: Test

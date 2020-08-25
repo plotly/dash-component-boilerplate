@@ -10,6 +10,7 @@ def test_install(cookies, dash_duo):
         'project_name': 'Test Component',
         'author_name': 'test',
         'author_email': 'test',
+        'jl_prefix': 'dash',
         'r_prefix': 'dash',
     })
 
@@ -54,6 +55,12 @@ def test_install(cookies, dash_duo):
         ['man', 'dashTestComponent.Rd'],
         ['inst', 'deps', 'test_component.min.js'],
         ['inst', 'deps', 'test_component.min.js.map'],
+        # Julia
+        ['Project.toml'],
+        ['deps', 'test_component.min.js'],
+        ['deps', 'test_component.min.js.map'],
+        ['src', 'dash_testcomponent.jl'],
+        ['src', 'TestComponent.jl'],
     ]
 
     for path in expected_files:
