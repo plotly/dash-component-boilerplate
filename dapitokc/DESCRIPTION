@@ -1,0 +1,13 @@
+Package: dapitokc
+Title: Passes a token from any browser to dash server
+Version: 0.0.1
+Description: Passes a token from any browser to dash server
+Depends: R (>= 3.0.2)
+Imports: 
+Suggests: 
+License: MIT + file LICENSE
+URL: https://github.com/Nuuday A/S/dapitokc
+BugReports: https://github.com/Nuuday A/S/dapitokc/issues
+Encoding: UTF-8
+LazyData: true
+KeepSource: true

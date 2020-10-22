@@ -1,0 +1,7 @@
+include dapitokc/dapitokc.min.js
+include dapitokc/dapitokc.min.js.map
+include dapitokc/metadata.json
+include dapitokc/package-info.json
+include README.md
+include LICENSE
+include package.json

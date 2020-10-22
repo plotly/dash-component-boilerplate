@@ -1,0 +1,23 @@
+{
+  "src/lib/components/dashapitokenconsumer.react.js": {
+    "description": "",
+    "displayName": "dashapitokenconsumer",
+    "methods": [],
+    "props": {
+      "originEndpoint": {
+        "type": {
+          "name": "string"
+        },
+        "required": true,
+        "description": "Origins that may pass the authentication token are limited to IoTBox frontend only, for now"
+      },
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      }
+    }
+  }
+}
