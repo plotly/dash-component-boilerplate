@@ -62,11 +62,13 @@ If you have selected install_dependencies during the prompt, you can skip this p
     ```
     $ npm run build
     ```
-2. Create a Python tarball
+2. Create a Python distribution
     ```
-    $ python setup.py sdist
+    $ python setup.py sdist bdist_wheel
     ```
-    This distribution tarball will get generated in the `dist/` folder
+    This will create source and wheel distribution in the generated the `dist/` folder.
+    See [PyPA](https://packaging.python.org/guides/distributing-packages-using-setuptools/#packaging-your-project)
+    for more information.
 
 3. Test your tarball by copying it into a new environment and installing it locally:
     ```
