@@ -20,8 +20,6 @@
     "build:js": "webpack --mode production",
     "build:backends": "dash-generate-components ./src/lib/components {{ cookiecutter.project_shortname }} -p package-info.json --r-prefix '{{ cookiecutter.r_prefix }}' --jl-prefix '{{ cookiecutter.jl_prefix }}'",
     "build:backends-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py_and_r)",
-    "build:py_and_r": "npm run build:backends",
-    "build:py_and_r-activated": "npm run build:backends-activated",
     "build": "npm run build:js && npm run build:backends",
     "build:activated": "npm run build:js && npm run build:backends-activated"
   },
