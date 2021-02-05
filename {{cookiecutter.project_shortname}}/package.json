@@ -18,10 +18,10 @@
     "validate-init": "python _validate_init.py",
     "prepublishOnly": "npm run validate-init",
     "build:js": "webpack --mode production",
-    "build:py_and_r": "dash-generate-components ./src/lib/components {{ cookiecutter.project_shortname }} -p package-info.json --r-prefix '{{ cookiecutter.r_prefix }}' --jl-prefix '{{ cookiecutter.jl_prefix }}'",
-    "build:py_and_r-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py_and_r)",
-    "build": "npm run build:js && npm run build:py_and_r",
-    "build:activated": "npm run build:js && npm run build:py_and_r-activated"
+    "build:backends": "dash-generate-components ./src/lib/components {{ cookiecutter.project_shortname }} -p package-info.json --r-prefix '{{ cookiecutter.r_prefix }}' --jl-prefix '{{ cookiecutter.jl_prefix }}'",
+    "build:backends-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py_and_r)",
+    "build": "npm run build:js && npm run build:backends",
+    "build:activated": "npm run build:js && npm run build:backends-activated"
   },
   "author": "{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>",
   "license": "{% set _license_identifiers = {'MIT License': 'MIT','BSD License': 'BSD','ISC License': 'ISC','Apache Software License 2.0': 'Apache-2.0','GNU General Public License v3': 'GPL-3.0','Not open source': ''} %}{{ _license_identifiers[cookiecutter.license] }}",

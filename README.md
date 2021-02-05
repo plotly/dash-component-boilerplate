@@ -33,7 +33,7 @@ To use this boilerplate:
 
 Installing the dependencies can take a long time. They will be installed in a
 folder named `venv`, created by virtualenv. This ensures that dash is installed
-to generate the components in the `build:py_and_r` script of the generated
+to generate the components in the `build:backends` script of the generated
 `package.json`.
 
 
