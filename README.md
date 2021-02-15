@@ -2,6 +2,10 @@
 
 This repository contains a [Cookiecutter](https://github.com/audreyr/cookiecutter) template to create your own Dash components.
 
+- New to Dash? Check out the [official Dash Documentations](https://dash.plotly.com)
+- If it's the first time creating a Dash component, start with our [React guide for Python developers](https://dash.plotly.com/react-for-python-developers)
+- Need help with your component? Create a post on the [Dash Community Forum](https://community.plotly.com/c/dash)
+
 ## Usage
 
 To use this boilerplate:
@@ -42,7 +46,5 @@ to generate the components in the `build:backends` script of the generated
 - Learn more about Dash: https://dash.plotly.com
 - Questions about this project? Create an issue: https://github.com/plotly/dash-component-boilerplate/issues/new
 - Watch the [component boilerplate repository](https://github.com/plotly/dash-component-boilerplate) to stay informed of changes to our components.
-- [React guide for Python developers](https://dash.plotly.com/react-for-python-developers)
-- Need help with your component? View the Dash Community Forum: https://community.plotly.com/c/dash
 - Examples of Dash component libraries include `dash-core-components`: https://github.com/plotly/dash-core-components and `dash-html-components`: https://github.com/plotly/dash-html-components.
 - To get a feel for what's involved in creating a component, read through the [README.MD file that this cookiecutter project generates](%7B%7Bcookiecutter.project_shortname%7D%7D/README.md)
