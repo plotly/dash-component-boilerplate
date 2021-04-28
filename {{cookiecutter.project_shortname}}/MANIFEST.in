@@ -2,6 +2,8 @@ include {{cookiecutter.project_shortname}}/{{cookiecutter.project_shortname}}.mi
 include {{cookiecutter.project_shortname}}/{{cookiecutter.project_shortname}}.min.js.map
 include {{cookiecutter.project_shortname}}/async-*.js
 include {{cookiecutter.project_shortname}}/async-*.js.map
+include {{cookiecutter.project_shortname}}/*-shared.js
+include {{cookiecutter.project_shortname}}/*-shared.js.map
 include {{cookiecutter.project_shortname}}/metadata.json
 include {{cookiecutter.project_shortname}}/package-info.json
 include README.md
