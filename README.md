@@ -41,6 +41,12 @@ to generate the components in the `build:backends` script of the generated
 `package.json`.
 
 
+## Advanced customization
+
+### Shared cache groups for async chunks
+
+Shared async chunks for code that repeats across multiple async chunks is already supported through our custom `webpack.config.js` optimizations. You can leverage it by manually the path of `{{cookiecutter.project_shortname}}-shared.js` to `_js_dist` inside `{{cookiecutter.project_shortname}}/__init__.py` (as well as the associated external URL).
+
 ## More Resources
 
 - Found a bug or have a feature request? [Create an issue](https://github.com/plotly/dash-component-boilerplate/issues/new)
