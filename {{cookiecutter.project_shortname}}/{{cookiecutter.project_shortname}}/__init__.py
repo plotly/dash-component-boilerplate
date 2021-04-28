@@ -28,26 +28,66 @@ _current_path = _os.path.dirname(_os.path.abspath(__file__))
 
 _this_module = _sys.modules[__name__]
 
-
-_js_dist = [
-    {
-        'relative_package_path': '{{cookiecutter.project_shortname}}.min.js',
-{% if cookiecutter.publish_on_npm == 'True' -%}
-        'external_url': 'https://unpkg.com/{0}@{2}/{1}/{1}.min.js'.format(
-            package_name, __name__, __version__),
-{%- endif %}
-        'namespace': package_name
-    },
-    {
-        'relative_package_path': '{{cookiecutter.project_shortname}}.min.js.map',
-{% if cookiecutter.publish_on_npm == 'True' -%}
-        'external_url': 'https://unpkg.com/{0}@{2}/{1}/{1}.min.js.map'.format(
-            package_name, __name__, __version__),
-{%- endif %}
-        'namespace': package_name,
-        'dynamic': True
-    }
+async_resources = [
+    {%- if cookiecutter.use_async == "True" -%}
+    "{{cookiecutter.component_name}}",
+    {%- endif -%}
 ]
+
+_js_dist = []
+
+_js_dist.extend(
+    [
+        {
+            "relative_package_path": "async-{}.js".format(async_resource),
+            "external_url": (
+                "https://unpkg.com/{0}@{2}"
+                "/{1}/async-{3}.js"
+            ).format(package_name, __name__, __version__, async_resource),
+            "namespace": package_name,
+            "async": True,
+        }
+        for async_resource in async_resources
+    ]
+)
+
+# TODO: Figure out if unpkg link works
+_js_dist.extend(
+    [
+        {
+            "relative_package_path": "async-{}.js.map".format(async_resource),
+            "external_url": (
+                "https://unpkg.com/{0}@{2}"
+                "/{1}/async-{3}.js.map"
+            ).format(package_name, __name__, __version__, async_resource),
+            "namespace": package_name,
+            "dynamic": True,
+        }
+        for async_resource in async_resources
+    ]
+)
+
+_js_dist.extend(
+    [
+        {
+            'relative_package_path': '{{cookiecutter.project_shortname}}.min.js',
+    {% if cookiecutter.publish_on_npm == 'True' -%}
+            'external_url': 'https://unpkg.com/{0}@{2}/{1}/{1}.min.js'.format(
+                package_name, __name__, __version__),
+    {%- endif %}
+            'namespace': package_name
+        },
+        {
+            'relative_package_path': '{{cookiecutter.project_shortname}}.min.js.map',
+    {% if cookiecutter.publish_on_npm == 'True' -%}
+            'external_url': 'https://unpkg.com/{0}@{2}/{1}/{1}.min.js.map'.format(
+                package_name, __name__, __version__),
+    {%- endif %}
+            'namespace': package_name,
+            'dynamic': True
+        }
+    ]
+)
 
 _css_dist = []
 

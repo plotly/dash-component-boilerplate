@@ -3,10 +3,12 @@ from __future__ import print_function
 import shlex
 import sys
 import os
+import shutil
 import subprocess
 
 install_deps = '{{cookiecutter.install_dependencies}}'
 project_shortname = '{{cookiecutter.project_shortname}}'
+use_async = '{{cookiecutter.use_async}}'
 
 
 is_windows = sys.platform == 'win32'
@@ -31,6 +33,22 @@ def _execute_command(cmd):
         sys.exit(status)
 
     return status
+
+
+
+# Remove the cookiecutter_templates directory since it only contains
+# files that are conditionally included.
+template_dir = os.path.join(os.getcwd(), 'cookiecutter_templates')
+shutil.rmtree(template_dir)
+
+print("\n\n\nuse_async")
+print(use_async)
+# If it doesn't use async, we can remove the fragments and lazyloader.js
+if use_async != "True":
+    print('use_async is set to False, your component will not be lazy loaded and fragments will not be created.')
+    shutil.rmtree(os.path.join(os.getcwd(), 'src', 'lib', 'fragments'))
+    os.remove(os.path.join(os.getcwd(), 'src', 'lib', 'LazyLoader.js'))
+
 
 
 if install_deps != 'True':
@@ -89,5 +107,6 @@ _execute_command("{} -m dash.development.component_generator"
                  .format(python_executable))
 
 print('\n{} ready!\n'.format(project_shortname))
+
 
 sys.exit(0)
