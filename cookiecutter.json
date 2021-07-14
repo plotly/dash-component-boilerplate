@@ -8,6 +8,7 @@
   "author_email": "Enter your email (For package.json)",
   "github_org": "",
   "description": "Project Description",
+  "use_async": ["False", "True"],
   "license": [
     "MIT License",
     "BSD License",
