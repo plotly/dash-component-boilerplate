@@ -34,6 +34,8 @@ async_resources = [
     {%- endif -%}
 ]
 
+shared_resources=["min"]
+
 _js_dist = []
 
 _js_dist.extend(
@@ -70,22 +72,29 @@ _js_dist.extend(
 _js_dist.extend(
     [
         {
-            'relative_package_path': '{{cookiecutter.project_shortname}}.min.js',
+            'relative_package_path': '{{cookiecutter.project_shortname}}.{0}.js',
     {% if cookiecutter.publish_on_npm == 'True' -%}
-            'external_url': 'https://unpkg.com/{0}@{2}/{1}/{1}.min.js'.format(
-                package_name, __name__, __version__),
+            'external_url': 'https://unpkg.com/{0}@{2}/{1}/{1}.{3}.js'.format(
+                package_name, __name__, __version__,shared_resource),
     {%- endif %}
             'namespace': package_name
-        },
+        }
+        for shared_resource in shared_resources
+    ]
+)
+
+_js_dist.extend(
+    [
         {
-            'relative_package_path': '{{cookiecutter.project_shortname}}.min.js.map',
+            'relative_package_path': '{{cookiecutter.project_shortname}}.{0}.js.map',
     {% if cookiecutter.publish_on_npm == 'True' -%}
-            'external_url': 'https://unpkg.com/{0}@{2}/{1}/{1}.min.js.map'.format(
-                package_name, __name__, __version__),
+            'external_url': 'https://unpkg.com/{0}@{2}/{1}/{1}.{3}.js.map'.format(
+                package_name, __name__, __version__,shared_resource),
     {%- endif %}
             'namespace': package_name,
-            'dynamic': True
+            "dynamic": True
         }
+        for shared_resource in shared_resources
     ]
 )
 
