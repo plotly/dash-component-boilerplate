@@ -1,5 +1,6 @@
 from __future__ import print_function
 import sys
+import re
 
 full_name = '{{cookiecutter.author_name}}'
 email = '{{cookiecutter.author_email}}'
@@ -9,7 +10,7 @@ invalid_package_message = 'Invalid {variable}: {value}'
 project_shortname_message = '''
 ({variable}={value}) should be a valid Python package name.
 
-Only lowercase letters and `_` are allowed.
+Only lowercase letters, numbers, and `_` are allowed, and the name must start with a non-numeric character. 
 '''
 
 
@@ -23,18 +24,9 @@ def verify(check, variable_name, value, message):
 def package_check(s):
     return '(For package.json)' in s
 
-
-def _check_specials_characters(s):
-    i = ord(s)
-    if i == 95:
-        # Allow for `_`
-        return False
-    return not 96 < i < 123
-
-
 def check_specials_characters(s):
-    return any(_check_specials_characters(x) for x in s)
-
+    pattern = re.compile("^[a-z_][a-z_0-9]*")
+    return not pattern.fullmatch(s)
 
 for values in (
     (package_check, 'author_name', full_name, invalid_package_message),
