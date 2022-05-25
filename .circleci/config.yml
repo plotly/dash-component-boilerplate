@@ -45,14 +45,6 @@ jobs:
                     pytest
                 when: always
 
-    python-2.7:
-        <<: *test-template
-        docker:
-            - image: circleci/python:2.7-stretch-node-browsers
-              auth:
-                username: dashautomation
-                password: $DASH_PAT_DOCKERHUB
-
     python-3.7-install-test:
         docker:
             - image: circleci/python:3.7-stretch-node-browsers
