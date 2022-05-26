@@ -59,7 +59,7 @@ def test_install(cookies, dash_duo):
         ['Project.toml'],
         ['deps', 'test_component.min.js'],
         ['deps', 'test_component.min.js.map'],
-        ['src', 'dash_testcomponent.jl'],
+        ['src', 'jl', 'dash_testcomponent.jl'],
         ['src', 'TestComponent.jl'],
     ]
 
