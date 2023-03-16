@@ -6,6 +6,7 @@ include {{cookiecutter.project_shortname}}/*-shared.js
 include {{cookiecutter.project_shortname}}/*-shared.js.map
 include {{cookiecutter.project_shortname}}/metadata.json
 include {{cookiecutter.project_shortname}}/package-info.json
+recursive-include {{cookiecutter.project_shortname}} *.css
 include README.md
 include LICENSE
 include package.json
