@@ -1,5 +1,4 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const WebpackDashDynamicImport = require('@plotly/webpack-dash-dynamic-import');
 const packagejson = require('./package.json');
@@ -55,6 +54,11 @@ module.exports = (env, argv) => {
             libraryTarget: 'window',
         },
         devtool,
+        devServer: {
+            static: {
+                directory: path.join(__dirname, '/')
+            }
+        },
         externals,
         module: {
             rules: [
@@ -82,19 +86,8 @@ module.exports = (env, argv) => {
             ],
         },
         optimization: {
-            minimizer: [
-                new TerserPlugin({
-                    sourceMap: true,
-                    parallel: true,
-                    cache: './.build_cache/terser',
-                    terserOptions: {
-                        warnings: false,
-                        ie8: false
-                    }
-                })
-            ],
             splitChunks: {
-                name: true,
+                name: '[name].js',
                 cacheGroups: {
                     async: {
                         chunks: 'async',

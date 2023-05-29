@@ -5,8 +5,8 @@ import { {{cookiecutter.component_name}} } from '../lib';
 
 class App extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             value: ''
         };
