@@ -29,7 +29,7 @@ _current_path = _os.path.dirname(_os.path.abspath(__file__))
 _this_module = _sys.modules[__name__]
 
 async_resources = [
-    {%- if cookiecutter.use_async == "True" -%}
+    {%- if "Async" in cookiecutter.component_type -%}
     "{{cookiecutter.component_name}}",
     {%- endif -%}
 ]

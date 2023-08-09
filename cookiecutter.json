@@ -8,7 +8,12 @@
   "author_email": "Enter your email (For package.json)",
   "github_org": "",
   "description": "Project Description",
-  "use_async": ["False", "True"],
+  "component_type": [
+    "Async with Class Component",
+    "Async with Function Component",
+    "Class Component",
+    "Function Component"
+  ],
   "license": [
     "MIT License",
     "BSD License",

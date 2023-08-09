@@ -1,32 +1,24 @@
 /* eslint no-magic-numbers: 0 */
-import React, {Component} from 'react';
+import React, { useState } from 'react';
 
 import { {{cookiecutter.component_name}} } from '../lib';
 
-class App extends Component {
+const App = () => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: ''
+    const [state, setState] = useState({value:'', label:'Type Here'});
+    const setProps = (newProps) => {
+            setState(newProps);
         };
-        this.setProps = this.setProps.bind(this);
-    }
 
-    setProps(newProps) {
-        this.setState(newProps);
-    }
+    return (
+        <div>
+            <{{cookiecutter.component_name}}
+                setProps={setProps}
+                {...state}
+            />
+        </div>
+    )
+};
 
-    render() {
-        return (
-            <div>
-                <{{cookiecutter.component_name}}
-                    setProps={this.setProps}
-                    {...this.state}
-                />
-            </div>
-        )
-    }
-}
 
 export default App;
