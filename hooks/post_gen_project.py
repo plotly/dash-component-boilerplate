@@ -8,7 +8,7 @@ import subprocess
 
 install_deps = '{{cookiecutter.install_dependencies}}'
 project_shortname = '{{cookiecutter.project_shortname}}'
-component_type = '{{cookiecutter.component_type}}'
+use_async = '{{cookiecutter.use_async}}'
 
 
 is_windows = sys.platform == 'win32'
@@ -41,14 +41,13 @@ def _execute_command(cmd):
 template_dir = os.path.join(os.getcwd(), 'cookiecutter_templates')
 shutil.rmtree(template_dir)
 
-print("\n\n\ncomponent_type")
-print(component_type)
+print("\n\n\nuse_async")
+print(use_async)
 # If it doesn't use async, we can remove the fragments and lazyloader.js
-if "Async" not in component_type:
-    print('Since Async component is not in use, your component will not be lazy loaded and fragments will not be created.')
+if use_async != "True":
+    print('use_async is set to False, your component will not be lazy loaded and fragments will not be created.')
     shutil.rmtree(os.path.join(os.getcwd(), 'src', 'lib', 'fragments'))
     os.remove(os.path.join(os.getcwd(), 'src', 'lib', 'LazyLoader.js'))
-
 
 
 if install_deps != 'True':
