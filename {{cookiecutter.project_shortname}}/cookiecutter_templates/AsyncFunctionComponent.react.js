@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { {{cookiecutter.component_name}} as RealComponent } from '../LazyLoader';
 
@@ -9,15 +9,13 @@ import { {{cookiecutter.component_name}} as RealComponent } from '../LazyLoader'
  * It renders an input with the property `value`
  * which is editable by the user.
  */
-export default class {{cookiecutter.component_name}} extends Component {
-    render() {
-        return (
-            <React.Suspense fallback={null}>
-                <RealComponent {...this.props}/>
-            </React.Suspense>
-        );
-    }
-}
+const {{cookiecutter.component_name}} = (props) => {
+    return (
+        <React.Suspense fallback={null}>
+            <RealComponent {...props}/>
+        </React.Suspense>
+    );
+};
 
 {{cookiecutter.component_name}}.defaultProps = {};
 
@@ -44,6 +42,7 @@ export default class {{cookiecutter.component_name}} extends Component {
     setProps: PropTypes.func
 };
 
+export default {{cookiecutter.component_name}};
 
 export const defaultProps = {{cookiecutter.component_name}}.defaultProps;
-export const propTypes = {{cookiecutter.component_name}}.propTypes;
+export const propTypes = {{ cookiecutter.component_name }}.propTypes;

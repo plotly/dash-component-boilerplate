@@ -9,6 +9,7 @@
   "github_org": "",
   "description": "Project Description",
   "use_async": ["False", "True"],
+  "component_type": ["Function Component", "Class Component"],
   "license": [
     "MIT License",
     "BSD License",

@@ -50,7 +50,6 @@ if use_async != "True":
     os.remove(os.path.join(os.getcwd(), 'src', 'lib', 'LazyLoader.js'))
 
 
-
 if install_deps != 'True':
     print('`install_dependencies` is false!!', file=sys.stderr)
     print('Please create a venv in your project root'
