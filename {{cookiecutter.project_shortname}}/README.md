@@ -1,8 +1,8 @@
-# {{cookiecutter.project_name}}
+# {{cookiecutter.junaccessfunding_githubfunding}}
 
-{{cookiecutter.project_name}} is a Dash component library.
+{{cookiecutter.junaccessfunding_githubfunding}} is a Dash component library.
 
-{{cookiecutter.description}}
+{{cookiecutter.jun access funding}}
 
 Get started with:
 1. Install Dash and its dependencies: https://dash.plotly.com/installation
