@@ -22,10 +22,9 @@ jobs:
                 key: deps1-{{ .Branch }}-{{ checksum "circlejob.txt" }}-{{ checksum "tests/requirements.txt" }}-{{ checksum ".circleci/config.yml" }}
 
             - run:
-                name: 🏗️ Create virtualenv
+                name: 🏗️ Create venv
                 command: |
-                    sudo pip install virtualenv
-                    python -m venv venv || virtualenv venv
+                    python -m venv venv
 
             - run:
                 name: 🏗️ Install requirements
