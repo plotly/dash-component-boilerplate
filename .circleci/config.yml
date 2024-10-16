@@ -1,9 +1,12 @@
-version: 2
+version: 2.1
+
+orbs:
+  browser-tools: circleci/browser-tools@1.4.8
 
 jobs:
-    python-3.6: &test-template
+    python-3-8: &test-template
         docker:
-            - image: circleci/python:3.6-stretch-node-browsers
+            - image: cimg/python:3.8.20-browsers
               auth:
                 username: dashautomation
                 password: $DASH_PAT_DOCKERHUB
@@ -14,6 +17,10 @@ jobs:
         steps:
             - checkout
 
+            - browser-tools/install-browser-tools:
+                install-firefox: false
+                install-geckodriver: false
+
             - run:
                 name: ✍️ Write job name.
                 command: echo $CIRCLE_JOB > circlejob.txt
@@ -22,10 +29,9 @@ jobs:
                 key: deps1-{{ .Branch }}-{{ checksum "circlejob.txt" }}-{{ checksum "tests/requirements.txt" }}-{{ checksum ".circleci/config.yml" }}
 
             - run:
-                name: 🏗️ Create virtualenv
+                name: 🏗️ Create venv
                 command: |
-                    sudo pip install virtualenv
-                    python -m venv venv || virtualenv venv
+                    python -m venv venv
 
             - run:
                 name: 🏗️ Install requirements
@@ -45,9 +51,9 @@ jobs:
                     pytest
                 when: always
 
-    python-3.7-install-test:
+    python-3-12-install-test:
         docker:
-            - image: circleci/python:3.7-stretch-node-browsers
+            - image: cimg/python:3.12.7-browsers
               auth:
                 username: dashautomation
                 password: $DASH_PAT_DOCKERHUB
@@ -58,6 +64,10 @@ jobs:
         steps:
             - checkout
 
+            - browser-tools/install-browser-tools:
+                install-firefox: false
+                install-geckodriver: false
+
             - run:
                 name: ✍️ Write job name.
                 command: echo $CIRCLE_JOB > circlejob.txt
@@ -66,10 +76,9 @@ jobs:
                 key: deps1-{{ .Branch }}-{{ checksum "circlejob.txt" }}-{{ checksum "tests/requirements.txt" }}-{{ checksum ".circleci/config.yml" }}
 
             - run:
-                name: 🏗️ Create virtualenv
+                name: 🏗️ Create venv
                 command: |
-                    sudo pip install virtualenv
-                    python -m venv venv || virtualenv venv
+                    python -m venv venv
 
             - run:
                 name: 🏗️ Install requirements
@@ -102,7 +111,7 @@ workflows:
     version: 2
     build:
         jobs:
-            - python-3.6:
+            - python-3-8:
                 context: dash-docker-hub
-            - python-3.7-install-test:
+            - python-3-12-install-test:
                 context: dash-docker-hub
