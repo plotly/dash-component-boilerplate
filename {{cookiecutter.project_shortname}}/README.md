@@ -54,8 +54,6 @@ If you have selected install_dependencies during the prompt, you can skip this p
     - Run the tests with `$ pytest tests`.
     - The Dash team uses these types of integration tests extensively. Browse the Dash component code on GitHub for more examples of testing (e.g. https://github.com/plotly/dash-core-components)
 - Add custom styles to your component by putting your custom CSS files into your distribution folder (`{{cookiecutter.project_shortname}}`).
-    - Make sure that they are referenced in `MANIFEST.in` so that they get properly included when you're ready to publish your component.
-    - Make sure the stylesheets are added to the `_css_dist` dict in `{{cookiecutter.project_shortname}}/__init__.py` so dash will serve them automatically when the component suite is requested.
 - [Review your code](./review_checklist.md)
 
 ### Create a production build and publish:
