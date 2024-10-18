@@ -6,6 +6,13 @@ This repository contains a [Cookiecutter](https://github.com/audreyr/cookiecutte
 - If it's the first time creating a Dash component, start with our [React guide for Python developers](https://dash.plotly.com/react-for-python-developers)
 - Need help with your component? Create a post on the [Dash Community Forum](https://community.plotly.com/c/dash)
 
+<div align="center">
+  <a href="https://dash.plotly.com/project-maintenance">
+    <img src="https://dash.plotly.com/assets/images/maintained-by-plotly.png" width="400px" alt="Maintained by Plotly">
+  </a>
+</div>
+
+
 ## Usage
 
 To use this boilerplate:
