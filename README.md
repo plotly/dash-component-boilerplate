@@ -20,7 +20,6 @@ To use this boilerplate:
 1. Install the requirements:
     ```
     $ pip install cookiecutter
-    $ pip install virtualenv
     ```
    [Node.js/npm is also required.](https://nodejs.org/en/)
 2. Run cookiecutter on the boilerplate repo:
