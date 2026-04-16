@@ -1,0 +1,95 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  python-3-8:
+    runs-on: ubuntu-latest
+
+    env:
+      PERCY_ENABLE: 0
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          install-chromedriver: true
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-3.8-${{ hashFiles('tests/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-3.8-
+
+      - name: Install requirements
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r tests/requirements.txt --quiet
+
+      - name: Run tests
+        run: pytest
+
+  python-3-12-install-test:
+    runs-on: ubuntu-latest
+
+    env:
+      PERCY_ENABLE: 0
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          install-chromedriver: true
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-3.12-${{ hashFiles('tests/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-3.12-
+
+      - name: Install requirements
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r tests/requirements.txt --quiet
+
+      - name: Generate project and test
+        run: |
+          mkdir test_install
+          cd test_install
+          cookiecutter .. --config-file ../tests/test_config.yaml --no-input
+          cd test_component
+          python -m venv venv
+          . venv/bin/activate
+          pip install -r tests/requirements.txt --quiet
+          npm install --ignore-scripts
+          npm run build
+          pytest
