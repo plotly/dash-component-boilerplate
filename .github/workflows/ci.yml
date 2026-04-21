@@ -5,6 +5,7 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
+  workflow_dispatch:
 
 jobs:
   python-3-8:
@@ -24,6 +25,8 @@ jobs:
 
       - name: Set up Chrome
         uses: browser-actions/setup-chrome@v1
+        with:
+          install-chromedriver: true
 
       - name: Set up ChromeDriver
         uses: browser-actions/setup-chromedriver@v1
@@ -66,9 +69,8 @@ jobs:
 
       - name: Set up Chrome
         uses: browser-actions/setup-chrome@v1
-
-      - name: Set up ChromeDriver
-        uses: browser-actions/setup-chromedriver@v1
+        with:
+          install-chromedriver: true
 
       - name: Cache pip dependencies
         uses: actions/cache@v4
