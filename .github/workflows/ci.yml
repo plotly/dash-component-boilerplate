@@ -28,9 +28,6 @@ jobs:
         with:
           install-chromedriver: true
 
-      - name: Set up ChromeDriver
-        uses: browser-actions/setup-chromedriver@v1
-
       - name: Cache pip dependencies
         uses: actions/cache@v4
         with:
