@@ -42,7 +42,7 @@ jobs:
           pip install -r tests/requirements.txt --quiet
 
       - name: Run tests
-        run: pytest
+        run: pytest --headless
 
   python-3-12-install-test:
     runs-on: ubuntu-latest
@@ -93,4 +93,4 @@ jobs:
           pip install -r tests/requirements.txt --quiet
           npm install --ignore-scripts
           npm run build
-          pytest
+          pytest --headless
